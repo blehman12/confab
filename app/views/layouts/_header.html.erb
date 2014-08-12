@@ -1,19 +1,16 @@
 <div class="navbar-inner">
   <nav>
-    <ul class="nav pull-right">
-      <li><%= link_to "Home",    root_path %></li>
-      <li><%= link_to "Help",    help_path %></li>
-      <li><%= link_to "Sign in", '#' %></li>
-      <li><%= link_to "Sign up", signup_path, class: "btn btn-large btn-primary" %></li>
-    </ul>
+    <h5><%= link_to "Home",    root_path %></h5>
+    <h5><%= link_to "Help",    help_path %></h5>
+
+    <% if signed_in? %>
+      <h5><%= link_to "Users", '#' %></h5>
+      <h5><%= link_to "Profile", current_user %></h5>
+      <h5><%= link_to "Settings", '#' %></h5>
+      <h5><%= link_to "Sign out", signout_path, method: "delete" %></h5>
+    <% else %>
+      <h5><%= link_to "Sign in", signin_path %></h5>
+    <h5><%= link_to "Sign up", signup_path %></h5>
+    <% end %>
   </nav>
 </div>
-
-<% if signed_in? %>
-  <h5><%= link_to "Users", '#' %></h5>
-  <h5><%= link_to "Profile", current_user %></h5>
-  <h5><%= link_to "Settings", '#' %></h5>
-  <h5><%= link_to "Sign out", signout_path, method: "delete" %></h5>
-<% else %>
-  <h5><%= link_to "Sign in", signin_path %></h5>
-<% end %>

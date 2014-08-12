@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users
- resources :sessions, only: [:new, :create, :destroy]
- root 'pages#home'
+  resources :sessions, only: [:new, :create, :destroy]
+  root 'pages#home'
 
   match '/help',    to: 'pages#help',       via: 'get'
   match '/signup',  to: 'users#new',        via: 'get'
