@@ -8,3 +8,12 @@
     </ul>
   </nav>
 </div>
+
+<% if signed_in? %>
+  <h5><%= link_to "Users", '#' %></h5>
+  <h5><%= link_to "Profile", current_user %></h5>
+  <h5><%= link_to "Settings", '#' %></h5>
+  <h5><%= link_to "Sign out", signout_path, method: "delete" %></h5>
+<% else %>
+  <h5><%= link_to "Sign in", signin_path %></h5>
+<% end %>
