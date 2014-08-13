@@ -4,9 +4,9 @@
     <h5><%= link_to "Help",    help_path %></h5>
 
     <% if signed_in? %>
-      <h5><%= link_to "Users", '#' %></h5>
+      <li><%= link_to "Users", users_path %></li>
       <h5><%= link_to "Profile", current_user %></h5>
-      <h5><%= link_to "Settings", '#' %></h5>
+      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
       <h5><%= link_to "Sign out", signout_path, method: "delete" %></h5>
     <% else %>
       <h5><%= link_to "Sign in", signin_path %></h5>
