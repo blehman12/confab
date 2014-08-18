@@ -6,15 +6,15 @@ class WantsController < ApplicationController
     @want = current_user.wants.build(want_params)
     if @want.save
       flash[:success] = "Profile Updated!"
-      redirect_to user_path
+      redirect_to user_path(current_user.id)
     else
-      render user_path
+      render user_path(current_user.id)
     end
   end
 
   def destroy
     @want.destroy
-    redirect_to user_path
+    redirect_to user_path(current_user.id)
   end
 
   private

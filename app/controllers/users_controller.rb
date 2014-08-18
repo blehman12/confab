@@ -10,8 +10,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @communications = @user.communications.paginate(page: params[:page])
+    @communication = current_user.communications.build if signed_in?
     @wants = @user.wants.paginate(page: params[:page])
+    @want = current_user.wants.build if signed_in?
     @skills = @user.skills.paginate(page: params[:page])
+    @skill = current_user.skills.build if signed_in?
   end
 
   def new

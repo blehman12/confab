@@ -1,16 +1,16 @@
 <div class="navbar-inner">
   <nav>
-    <h5><%= link_to "Home",    root_path %></h5>
-    <h5><%= link_to "Help",    help_path %></h5>
+    <h5><%= link_to "Home",    root_path %> | 
+      <%= link_to "Help",    help_path %> | 
 
     <% if signed_in? %>
-      <li><%= link_to "Users", users_path %></li>
-      <h5><%= link_to "Profile", current_user %></h5>
-      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-      <h5><%= link_to "Sign out", signout_path, method: "delete" %></h5>
+      <%= link_to "Users", users_path %> | 
+      <%= link_to "Profile", current_user %> | 
+      <%= link_to "Settings", edit_user_path(current_user) %> | 
+      <%= link_to "Sign Out", signout_path, method: "delete" %></h5>
     <% else %>
-      <h5><%= link_to "Sign in", signin_path %></h5>
-    <h5><%= link_to "Sign up", signup_path %></h5>
+      <%= link_to "Sign In", signin_path %> | 
+      <%= link_to "Sign Up", signup_path %></h5>
     <% end %>
   </nav>
 </div>

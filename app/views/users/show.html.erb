@@ -1,12 +1,12 @@
 <% provide(:title, @user.name) %>
-<div>
+<div class="box">
   <h1>
     <%= gravatar_for @user %>
     <%= @user.name %>
   </h1>
 </div>
 
-<div class="span8">
+<div class="box">
   <% if @user.wants.any? %>
     <h3>What You Are Looking For (<%= @user.wants.count %>)</h3>
     <ol class="wants">
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<div class="span8">
+<div class="box">
   <% if @user.skills.any? %>
     <h3>Your Specialties (<%= @user.skills.count %>)</h3>
     <ol class="skills">
@@ -32,7 +32,7 @@
   </div>
 </div>
 
-<div class="span8">
+<div class="box">
   <% if @user.communications.any? %>
     <h3>Your Preferred Method of Communication (<%= @user.communications.count %>)</h3>
     <ol class="communications">
