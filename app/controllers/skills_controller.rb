@@ -5,15 +5,15 @@ class SkillsController < ApplicationController
     @skill = current_user.skills.build(skill_params)
     if @skill.save
       flash[:success] = "Specialty Added!"
-      redirect_to root_url
+      redirect_to user_path(current_user.id)
     else
-      render root_url
+      render user_path(current_user.id)
     end
   end
 
  def destroy
     @skill.destroy
-    redirect_to root_url
+    redirect_to user_path(current_user.id)
   end
 
   private

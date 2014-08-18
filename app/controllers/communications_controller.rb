@@ -5,13 +5,15 @@ class CommunicationsController < ApplicationController
     @communication = current_user.communications.build(communication_params)
     if @communication.save
       flash[:success] = "Communication Preference Added!"
-      redirect_to root_url
+      redirect_to user_path(current_user.id)
     else
-      render root_url
+      render user_path(current_user.id)
     end
   end
 
   def destroy
+    @communication.destroy
+    redirect_to user_path(current_user.id)
   end
 
   private
