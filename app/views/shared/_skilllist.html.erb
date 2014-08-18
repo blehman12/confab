@@ -1,0 +1,6 @@
+<% if @skilllist_items.any? %>
+  <ol>
+    <%= render partial: 'shared/skilllist_item', collection: @skilllist_items %>
+  </ol>
+  <%= will_paginate @skilllist_items %>
+<% end %>

@@ -1,0 +1,12 @@
+<%= form_for(@communication) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :excomm, "How would you like to get in touch with other users?" %><br>
+    <%= f.field :excomm, placeholder: "(e.g. Twitter, WhatsApp?, etc.)" %>
+  </div>
+  <div class="field">
+    <%= f.label :userinfo, "What is your username/handle/number?" %><br>
+    <%= f.field :userinfo, placeholder: "(e.g. #myname)" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

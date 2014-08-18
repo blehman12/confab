@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :communications, dependent: :destroy
+  has_many :wants, dependent: :destroy
+  has_many :skills, dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
@@ -15,6 +18,21 @@ class User < ActiveRecord::Base
 
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def commlist
+    # This is preliminary. See "Following users" for the full implementation.
+    Communication.where("user_id = ?", id)
+  end
+
+  def wantlist
+    # This is preliminary. See "Following users" for the full implementation.
+    Want.where("user_id = ?", id)
+  end
+
+  def skilllist
+    # This is preliminary. See "Following users" for the full implementation.
+    Skill.where("user_id = ?", id)
   end
 
   private

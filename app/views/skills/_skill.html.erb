@@ -1,0 +1,15 @@
+<li>
+  <span class="skill"><%= skill.skill %></span>
+  <span class="level"><%= skill.level %></span>
+  <span class="tag"><%= skill.tag %></span>
+  <span class="category"><%= skill.category %></span>
+  <span class="timestamp">
+    Shared <%= time_ago_in_words(skill.created_at) %> ago.
+  </span>
+    </span>
+  <% if current_user?(skill.user) %>
+    <%= link_to "delete", skill,  method: :delete,
+                                  data: { confirm: "You sure?" },
+                                  title: skill.skill %>
+  <% end %>
+</li>

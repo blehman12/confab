@@ -1,0 +1,12 @@
+<li>
+  <span class="excomm"><%= communication.excomm %></span>
+  <span class="userinfo"><%= communication.userinfo %></span>
+  <span class="timestamp">
+    Shared <%= time_ago_in_words(communication.created_at) %> ago.
+  </span>
+  <% if current_user?(communication.user) %>
+    <%= link_to "delete", communication, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: communication.excomm %>
+  <% end %>
+</li>

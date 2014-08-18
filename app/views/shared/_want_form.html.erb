@@ -1,0 +1,20 @@
+<%= form_for(@want) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.label :wanted, "What are you looking to learn more about?" %><br>
+    <%= f.field :wanted %>
+  </div>
+  <div class="field">
+    <%= f.label :priority, "How high of a priority is this compared to your other interests on a scale of 1-10 (10 being the highest)?" %><br>
+    <%= f.number_field :priority, placeholder: "1-10" %>
+  </div>
+  <div class="field">
+    <%= f.label :tag, "Relevant tags:" %><br>
+    <%= f.field :tag, placeholder: "(e.g. #rubyonrails, #doctorwho, etc.)" %>
+  </div>
+  <div class="field">
+    <%= f.label :category, "Please enter a category for your specialty." %><br>
+    <%= f.field :category, placeholder: "(e.g. comics, financial industry, etc.)" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

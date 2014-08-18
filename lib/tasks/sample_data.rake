@@ -2,7 +2,7 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     admin = User.create!(name: "Example User",
-                         email: "example@example.org",
+                         email: "example@test.org",
                          password: "foobar",
                          password_confirmation: "foobar",
                          admin: true)
@@ -14,6 +14,26 @@ namespace :db do
                    email: email,
                    password: password,
                    password_confirmation: password)
+    end
+    users = User.all(limit: 6)
+    5.times do
+      excomm = Faker::Lorem.words(5)
+      userinfo = Faker::Lorem.words(2)
+      users.each { |user| user.communications.create!(excomm: excomm, userinfo: userinfo) }
+    end
+    5.times do
+      want = Faker::Lorem.words(2)
+      priority = Faker::Lorem.digit
+      tag = Faker::Lorem.words(1)
+      category = Faker::Lorem.words(1)
+      users.each { |user| user.wants.create!(wanted: want, priority: priority, tag: tag, category: category) }
+    end
+    5.times do
+      skill = Faker::Lorem.words(2)
+      level = Faker::Lorem.digit
+      tag = Faker::Lorem.words(1)
+      category = Faker::Lorem.words(1)
+      users.each { |user| user.skills.create!(skill: skill, level: level, tag: tag, category: category) }
     end
   end
 end

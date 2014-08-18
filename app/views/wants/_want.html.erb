@@ -1,0 +1,14 @@
+<li>
+  <span class="want"><%= want.wanted %></span>
+  <span class="priority"><%= want.priority %></span>
+  <span class="tag"><%= want.tag %></span>
+  <span class="category"><%= want.category %></span>
+  <span class="timestamp">
+    Shared <%= time_ago_in_words(want.created_at) %> ago.
+  </span>
+  <% if current_user?(want.user) %>
+    <%= link_to "delete", want, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: want.wanted %>
+  <% end %>
+</li>

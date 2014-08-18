@@ -1,0 +1,15 @@
+<li id="<%= commlist_item.id %>">
+  <%= link_to gravatar_for(commlist_item.user), commlist_item.user %>
+  <span class="user">
+    <%= link_to commlist_item.user.name, commlist_item.user %>
+  </span>
+  <span class="content"><%= commlist_item.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(commlist_item.created_at) %> ago.
+  </span>
+  <% if current_user?(commlist_item.user) %>
+    <%= link_to "delete", commlist_item, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: commlist_item.content %>
+  <% end %>
+</li>

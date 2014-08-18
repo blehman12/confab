@@ -1,0 +1,6 @@
+<% if @wantlist_items.any? %>
+  <ol class="microposts">
+    <%= render partial: 'shared/wantlist_item', collection: @wantlist_items %>
+  </ol>
+  <%= will_paginate @wantlist_items %>
+<% end %>

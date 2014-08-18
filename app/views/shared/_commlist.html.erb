@@ -1,0 +1,6 @@
+<% if @commlist_items.any? %>
+  <ol>
+    <%= render partial: 'shared/commlist_item', collection: @commlist_items %>
+  </ol>
+  <%= will_paginate @commlist_items %>
+<% end %>

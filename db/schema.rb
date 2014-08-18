@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140813223128) do
+ActiveRecord::Schema.define(version: 20140814020007) do
+
+  create_table "communications", force: true do |t|
+    t.string   "excomm"
+    t.string   "userinfo"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "communications", ["user_id", "created_at"], name: "index_communications_on_user_id_and_created_at"
+
+  create_table "skills", force: true do |t|
+    t.integer  "user_id"
+    t.string   "skill"
+    t.integer  "level"
+    t.string   "tag"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["user_id", "created_at"], name: "index_skills_on_user_id_and_created_at"
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -24,5 +46,17 @@ ActiveRecord::Schema.define(version: 20140813223128) do
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "wants", force: true do |t|
+    t.integer  "user_id"
+    t.string   "wanted"
+    t.string   "tag"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "priority"
+  end
+
+  add_index "wants", ["user_id", "created_at"], name: "index_wants_on_user_id_and_created_at"
 
 end

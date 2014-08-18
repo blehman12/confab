@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :communications, only: [:create, :destroy]
+  resources :wants, only: [:create, :destroy]
+  resources :skills, only: [:create, :destroy]
   root 'pages#home'
 
   match '/help',    to: 'pages#help',       via: 'get'
