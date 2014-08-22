@@ -1,5 +1,6 @@
 class CommunicationsController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
+  before_action :correct_user,   only: :destroy
 
   def create
     @communication = current_user.communications.build(communication_params)
