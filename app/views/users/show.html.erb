@@ -6,6 +6,12 @@
   </h1>
 </div>
 
+<% if (@user == current_user) || current_user.try(:admin?) %>
+  <div class="box">
+    <%= @user.email %>
+  </div>
+<% end %>
+
 <div class="box">
   <h3>What <%= @name_for_wants %> Looking For (<%= @user.wants.count %>)</h3>
   <div>
