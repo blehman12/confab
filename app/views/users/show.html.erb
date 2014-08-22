@@ -7,40 +7,58 @@
 </div>
 
 <div class="box">
-  <% if @user.wants.any? %>
-    <h3>What You Are Looking For (<%= @user.wants.count %>)</h3>
-    <ol class="wants">
-      <%= render @wants %>
-    </ol>
-    <%= will_paginate @wants %>
-  <% end %>
+  <h3>What <%= @name_for_wants %> Looking For (<%= @user.wants.count %>)</h3>
   <div>
-    <%= render 'shared/want_form' %>
+    <% if @user.wants.any? %>
+      <ol class="wants">
+        <%= render @wants %>
+      </ol>
+      <%= will_paginate @wants %>
+    <% else %>
+      <p><%= @name_none_posted %> not posted any topics of interest.</p>
+    <% end %>
   </div>
+    <% if @user == current_user %>
+      <div>
+        <%= render 'shared/want_form' %>
+      </div>
+    <% end %>
 </div>
 
 <div class="box">
-  <% if @user.skills.any? %>
-    <h3>Your Specialties (<%= @user.skills.count %>)</h3>
-    <ol class="skills">
-      <%= render @skills %>
-    </ol>
-    <%= will_paginate @skills %>
-  <% end %>
+  <h3>Specialties (<%= @user.skills.count %>)</h3>
   <div>
-    <%= render 'shared/skill_form' %>
+    <% if @user.skills.any? %>
+      <ol class="skills">
+        <%= render @skills %>
+      </ol>
+      <%= will_paginate @skills %>
+    <% else %>
+      <p><%= @name_none_posted %> not posted any specialties.</p>
+    <% end %>
   </div>
+  <% if @user == current_user %>
+    <div>
+      <%= render 'shared/skill_form' %>
+    </div>
+  <% end %>
 </div>
 
 <div class="box">
-  <% if @user.communications.any? %>
-    <h3>Your Preferred Method of Communication (<%= @user.communications.count %>)</h3>
-    <ol class="communications">
-      <%= render @communications %>
-    </ol>
-    <%= will_paginate @communications %>
-  <% end %>
+  <h3>Preferred Methods of Communication (<%= @user.communications.count %>)</h3>
   <div>
-    <%= render 'shared/communication_form' %>
+    <% if @user.communications.any? %>
+      <ol class="communications">
+        <%= render @communications %>
+      </ol>
+      <%= will_paginate @communications %>
+    <% else %>
+        <p><%= @name_none_posted %> not posted any preferred methods of communication.</p>
+    <% end %>
   </div>
+  <% if @user == current_user %>
+    <div>
+      <%= render 'shared/communication_form' %>
+    </div>
+  <% end %>
 </div>

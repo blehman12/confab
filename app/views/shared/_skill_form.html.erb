@@ -6,7 +6,6 @@
   </div>
   <div class="field">
     <%= f.label :level, "How would your rate your expertise in this topic on a scale of 1-10 (10 being the highest)?" %><br>
-    
     <%= f.collection_select :level, Skill::LEVEL, :to_int, :to_int %>
   </div>
   <div class="field">

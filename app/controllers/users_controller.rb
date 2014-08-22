@@ -15,6 +15,13 @@ class UsersController < ApplicationController
     @want = current_user.wants.build if signed_in?
     @skills = @user.skills.paginate(page: params[:page])
     @skill = current_user.skills.build if signed_in?
+    if @user == current_user
+      @name_for_wants = "You Are"
+      @name_none_posted = "You have"
+    else
+      @name_for_wants = "#{@user.name} Is"
+      @name_none_posted = "#{@user.name} has"
+    end
   end
 
   def new
