@@ -1,28 +1,42 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is Bob adding first commit/comment
 
 Things you may want to cover:
 
 * Ruby version
 
+1.9.1
+
 * System dependencies
+
+None
 
 * Configuration
 
+None
+
 * Database creation
+sqllite for test mysql production
 
 * Database initialization
 
 * How to run the test suite
 
+????
+
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
-* ...
-
+To commit files to the repo: git commit -m ‘[enter a brief message explaining what changes were made in either single or double quotes]’
+    To push to the github repository: git push origin master
+    To connect your local repo to the heroku app, navigate inside the app folder then: git remote add heroku git@heroku.com:confab1.git
+    Once you are connected to the right heroku app and are ready to deploy the latest version: git push heroku master
+    To run a migration on the heroku database: heroku run rake db:migrate 
+    If you need to completely reset the heroku database: heroku run rake db:reset
+    If you have made some large structural changes and can’t see them working, you may sometimes need to reset the dynos on heroku to make sure everything processes: heroku restart
+    
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
