@@ -59,6 +59,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def search
+    q = params[:user][:name]
+    @users = User.find(:all, :conditions => ["name LIKE %?%",q])
+  end
+
   private
 
     def user_params

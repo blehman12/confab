@@ -1,4 +1,28 @@
 <% provide(:title, @user.name) %>
+<script type="text/javascript">
+function HideContent(d) {
+document.getElementById(d).style.display = "none";
+}
+function ShowContent(d) {
+document.getElementById(d).style.display = "block";
+}
+function ReverseDisplay(d) {
+if(document.getElementById(d).style.display == "none") { document.getElementById(d).style.display = "block"; }
+else { document.getElementById(d).style.display = "none"; }
+}
+function HideAllShowOne(d) {
+var IDvaluesOfEachDiv = "userwants userskills usercomm";
+
+//-------------------------------------------------------------
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/[,\s"']/g," ");
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/^\s*/,"");
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/\s*$/,"");
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/  +/g," ");
+var IDlist = IDvaluesOfEachDiv.split(" ");
+for(var i=0; i<IDlist.length; i++) { HideContent(IDlist[i]); }
+ShowContent(d);
+}</script>
+
 <div class="box">
   <h1>
     <%= gravatar_for @user %>
@@ -11,8 +35,13 @@
     <%= @user.email %>
   </div>
 <% end %>
-
+<div>
+  <a href="javascript:HideAllShowOne('userwants')">Your Interests</a> |
+  <a href="javascript:HideAllShowOne('userskills')">Your Specialties</a> |
+  <a href="javascript:HideAllShowOne('usercomm')">Your Preferred Communications</a>
+</div>
 <div class="box">
+<div id="userwants" style="display:none;">
   <h3>What <%= @name_for_wants %> Looking For (<%= @user.wants.count %>)</h3>
   <div>
     <% if @user.wants.any? %>
@@ -31,7 +60,7 @@
     <% end %>
 </div>
 
-<div class="box">
+<div id="userskills" class="box" style="display:none">
   <h3>Specialties (<%= @user.skills.count %>)</h3>
   <div>
     <% if @user.skills.any? %>
@@ -50,7 +79,7 @@
   <% end %>
 </div>
 
-<div class="box">
+<div id="usercomm" style="display:none">
   <h3>Preferred Methods of Communication (<%= @user.communications.count %>)</h3>
   <div>
     <% if @user.communications.any? %>
@@ -67,4 +96,5 @@
       <%= render 'shared/communication_form' %>
     </div>
   <% end %>
+</div>
 </div>

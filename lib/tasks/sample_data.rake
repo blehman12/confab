@@ -15,6 +15,16 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    def make_relationships
+      users = User.all
+      user  = users.first
+      followed_users = users[2..50]
+      followers      = users[3..40]
+      followed_users.each { |followed| user.follow!(followed) }
+      followers.each      { |follower| follower.follow!(user) }
+    end
+
     users = User.all(limit: 6)
     5.times do
       excomm = Faker::Lorem.words(5)
