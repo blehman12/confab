@@ -25,7 +25,7 @@ namespace :db do
       followers.each      { |follower| follower.follow!(user) }
     end
 
-    users = User.all(limit: 6)
+    users = User.all
     5.times do
       excomm = Faker::Lorem.words(5)
       userinfo = Faker::Lorem.words(2)
