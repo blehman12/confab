@@ -1,6 +1,6 @@
 <% if @wantlist_items.any? %>
-  <div class="microposts">
+  <ul class="microposts">
       <%= render partial: 'shared/wantlist_item', collection: @wantlist_items %>
-  </div>
+  </ul>
   <%= will_paginate @wantlist_items %>
 <% end %>
