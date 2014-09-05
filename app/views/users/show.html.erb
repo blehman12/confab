@@ -39,11 +39,13 @@ ShowContent(d);
   <%= render 'shared/stats' %>
 </section>
 <%= render 'follow_form' if signed_in? %>
+<br>
 <div>
   <a href="javascript:HideAllShowOne('userwants')">Your Interests</a> |
   <a href="javascript:HideAllShowOne('userskills')">Your Specialties</a> |
   <a href="javascript:HideAllShowOne('usercomm')">Your Preferred Communications</a>
 </div>
+<br>
 <div class="box">
 <div id="userwants" style="display:none;">
   <h3>What <%= @name_for_wants %> Looking For (<%= @user.wants.count %>)</h3>
