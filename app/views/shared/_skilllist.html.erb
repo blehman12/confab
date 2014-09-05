@@ -1,5 +1,5 @@
 <% if @skilllist_items.any? %>
-  <ul>
+  <ul class="users">
     <%= render partial: 'shared/skilllist_item', collection: @skilllist_items %>
   </ul>
   <%= will_paginate @skilllist_items %>
