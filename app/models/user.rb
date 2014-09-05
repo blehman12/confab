@@ -26,17 +26,17 @@ class User < ActiveRecord::Base
 
   def commlist
     # This is preliminary. See "Following users" for the full implementation.
-    Communication.where("user_id = ?", id)
+    Communication.from_users_followed_by(self)
   end
 
   def wantlist
     # This is preliminary. See "Following users" for the full implementation.
-    Want.where("user_id = ?", id)
+    Want.from_users_followed_by(self)
   end
 
   def skilllist
     # This is preliminary. See "Following users" for the full implementation.
-    Skill.where("user_id = ?", id)
+    Skill.from_users_followed_by(self)
   end
 
   def following?(other_user)
