@@ -8,17 +8,22 @@
   <%= render 'layouts/shim' %>
 </head>
 <body>
-<div class='container'>
-  <%= render 'layouts/header' %>
-  <div id="search">
-    <h3>Search for other users:</h3>
-    <%= render 'users/search' %>
+<div id="container">
+  <div class="header">
+    <div class="nav">
+      <%= render 'layouts/header' %>
+    </div>
+    <div id="search">
+      <%= render 'users/search' %>
+    </div>
   </div>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
-  <div>
-    <%= yield %>
+  <div class="content">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    <div>
+      <%= yield %>
+    </div>
   </div>
   <%= debug(params) if Rails.env.development? %>
 </div>
