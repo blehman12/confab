@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :search
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   resources :wants, only: [:create, :destroy]
   resources :skills, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
-  resources :search
   root 'pages#home'
 
   match '/help',    to: 'pages#help',       via: 'get'

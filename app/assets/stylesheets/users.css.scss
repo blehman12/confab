@@ -55,3 +55,30 @@ aside {
     margin: 1px 1px;
   }
 }
+
+.pagination {
+  padding: 1.5px; margin: 1.5px;
+}
+
+.pagination li {
+  list-style-type: none;
+  list-style: none;
+  display: inline;
+}
+
+.pagination li a {
+  padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #aaaadd; text-decoration: none; color: #000099;
+}
+.pagination li a:hover {
+  border: 1px solid #000099; color: #000;
+}
+
+.pagination li a:active {
+  border: 1px solid #000099; color: #000;
+}
+.pagination span.current {
+  padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #000099; font-weight: bold; background-color: #000099; color: #FFF;
+}
+.pagination span.disabled {
+  padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #eee; color: #ddd;
+}

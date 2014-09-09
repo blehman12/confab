@@ -2,5 +2,5 @@
   <ul class="users">
       <%= render partial: 'shared/wantlist_item', collection: @wantlist_items %>
   </ul>
-  <%= will_paginate @wantlist_items %>
+  <%= will_paginate @wantlist_items, container: false %>
 <% end %>

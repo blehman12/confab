@@ -2,5 +2,5 @@
   <ul class="users">
     <%= render partial: 'shared/skilllist_item', collection: @skilllist_items %>
   </ul>
-  <%= will_paginate @skilllist_items %>
+  <%= will_paginate @skilllist_items, container: false %>
 <% end %>

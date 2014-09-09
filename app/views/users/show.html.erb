@@ -54,7 +54,7 @@ ShowContent(d);
       <ol class="wants">
         <%= render @wants %>
       </ol>
-      <%= will_paginate @wants %>
+      <%= will_paginate @wants, container: false %>
     <% else %>
       <p><%= @name_none_posted %> not posted any topics of interest.</p>
     <% end %>
@@ -73,7 +73,7 @@ ShowContent(d);
       <ol class="skills">
         <%= render @skills %>
       </ol>
-      <%= will_paginate @skills %>
+      <%= will_paginate @skills, container: false %>
     <% else %>
       <p><%= @name_none_posted %> not posted any specialties.</p>
     <% end %>
@@ -92,7 +92,7 @@ ShowContent(d);
       <ol class="communications">
         <%= render @communications %>
       </ol>
-      <%= will_paginate @communications %>
+      <%= will_paginate @communications, container: false %>
     <% else %>
         <p><%= @name_none_posted %> not posted any preferred methods of communication.</p>
     <% end %>

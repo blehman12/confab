@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page])
+    if params[:search]
+      @users = User.search(params[:search]).paginate(page: params[:page], per_page: 30)
+    else
+      @users = User.paginate(page: params[:page], per_page: 30)
+    end
   end
 
   def show
@@ -59,10 +63,14 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  def search
-    q = params[:user][:name]
-    @users = User.find(:all, :conditions => ["name LIKE %?%",q])
-  end
+  # def search
+  #   @users = User.search params[:search]
+  # end
+
+  # def search
+  #   q = params[:user][:name]
+  #   @users = User.find(:all, :conditions => ["name LIKE %?%",q])
+  # end
 
   def following
     @title = "Following"

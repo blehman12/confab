@@ -2,5 +2,5 @@
   <ol>
     <%= render partial: 'shared/commlist_item', collection: @commlist_items %>
   </ol>
-  <%= will_paginate @commlist_items %>
+  <%= will_paginate @commlist_items, container: false %>
 <% end %>
