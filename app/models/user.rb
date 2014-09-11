@@ -24,10 +24,6 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  # def self.search(search)
-  #   where(['name LIKE ?', 'email LIKE ?', "%#{search}%", "%#{search}%"])
-  # end
-
   def commlist
     # This is preliminary. See "Following users" for the full implementation.
     Communication.from_users_followed_by(self)
@@ -54,10 +50,6 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
-
-  # def search
-  #   @users = User.search params[:search]
-  # end
 
   def self.search(query)
     where("name like ?", "%#{query}%")

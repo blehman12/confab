@@ -22,9 +22,11 @@ class UsersController < ApplicationController
     if @user == current_user
       @name_for_wants = "You Are"
       @name_none_posted = "You have"
+      @name_possessive = "Your"
     else
-      @name_for_wants = "#{@user.name} Is"
-      @name_none_posted = "#{@user.name} has"
+      @name_for_wants = "#{@user.name.split[0]} Is"
+      @name_none_posted = "#{@user.name.split[0]} has"
+      @name_possessive = "#{@user.name.split[0]}'s"
     end
   end
 

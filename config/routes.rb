@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :communications, only: [:create, :destroy]
-  resources :wants, only: [:create, :destroy]
-  resources :skills, only: [:create, :destroy]
+  resources :wants, only: [:create, :destroy, :index]
+  resources :skills, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
   root 'pages#home'
 

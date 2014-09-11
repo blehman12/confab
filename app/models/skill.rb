@@ -12,4 +12,7 @@ class Skill < ActiveRecord::Base
           user_id: user.id)
   end
 
+  def self.search(query)
+    where("skill like ?", "%#{query}%")
+  end
 end

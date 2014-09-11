@@ -1,0 +1,22 @@
+<% provide(:title, 'User Interests') %>
+<h1>User Interests</h1>
+<div>
+<% form_tag wants_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Interests" %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+</div>
+
+<div>
+  <h3>All Interests</h3>
+  <% if @wants %>
+    <ul class="users">
+      <%= render @wants %>
+    </ul>
+    <span class="pagination"><%= will_paginate @wants, container: false %></span>
+  <% else %>
+    <h5>No specialties found.</h5>
+  <% end %>
+</div>

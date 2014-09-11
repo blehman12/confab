@@ -41,14 +41,14 @@ ShowContent(d);
 <%= render 'follow_form' if signed_in? %>
 <br>
 <div>
-  <a href="javascript:HideAllShowOne('userwants')">Your Interests</a> |
-  <a href="javascript:HideAllShowOne('userskills')">Your Specialties</a> |
-  <a href="javascript:HideAllShowOne('usercomm')">Your Preferred Communications</a>
+  <a href="javascript:HideAllShowOne('userwants')"><%= "#{@name_possessive}" %> Interests</a> |
+  <a href="javascript:HideAllShowOne('userskills')"><%= "#{@name_possessive}" %> Specialties</a> |
+  <a href="javascript:HideAllShowOne('usercomm')"><%= "#{@name_possessive}" %> Preferred Communications</a>
 </div>
 <br>
 <div class="box">
 <div id="userwants" style="display:none;">
-  <h3>What <%= @name_for_wants %> Looking For (<%= @user.wants.count %>)</h3>
+  <h3>What <%= "#{@name_possessive} Specialties" %> (<%= @user.wants.count %>)</h3>
   <div>
     <% if @user.wants.any? %>
       <ol class="wants">
@@ -67,7 +67,7 @@ ShowContent(d);
 </div>
 
 <div id="userskills" class="box" style="display:none">
-  <h3>Specialties (<%= @user.skills.count %>)</h3>
+  <h3><%= "#{@name_possessive} Specialties" %> (<%= @user.skills.count %>)</h3>
   <div>
     <% if @user.skills.any? %>
       <ol class="skills">

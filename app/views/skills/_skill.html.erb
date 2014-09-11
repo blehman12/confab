@@ -6,7 +6,6 @@
   <span class="timestamp">
     Shared <%= time_ago_in_words(skill.created_at) %> ago.
   </span>
-    </span>
   <% if current_user?(skill.user) %>
     <%= link_to "delete", skill,  method: :delete,
                                   data: { confirm: "You sure?" },
