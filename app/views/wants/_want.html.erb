@@ -1,14 +1,30 @@
-<li>
-  <span class="want"><%= want.wanted %></span>
-  <span class="priority"><%= want.priority %></span>
-  <span class="tag"><%= want.tag %></span>
-  <span class="category"><%= want.category %></span>
-  <span class="timestamp">
-    Shared <%= time_ago_in_words(want.created_at) %> ago.
-  </span>
-  <% if current_user?(want.user) %>
-    <%= link_to "delete", want, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: want.wanted %>
+<% if @index %>
+  <% unless current_user?(want.user) %>
+  <li class="users">
+    <span class="want"><%= "#{want.wanted[0].upcase}#{want.wanted[1..-1].downcase}" %></span> -
+    <span class="name"><%= link_to "#{want.user.name}", user_path(want.user_id) %></span> -
+    <span class="priority">Priority: <%= want.priority %></span>
+    <span class="category"><%= " - #{want.category.upcase}" unless want.category.blank? %></span>
+    <span class="tag"><%= " - \##{want.tag}" unless want.tag.blank? %></span>
+    <span class="timestamp">
+      Shared <%= time_ago_in_words(want.created_at) %> ago.
+    </span>
+  </li>
   <% end %>
-</li>
+<% else %>
+  <li class="users">
+    <span class="want"><%= "#{want.wanted[0].upcase}#{want.wanted[1..-1].downcase}" %></span> -
+    <span class="priority">Priority: <%= want.priority %></span>
+    <span class="category"><%= " - #{want.category.upcase}" unless want.category.blank? %></span>
+    <span class="tag"><%= " - \##{want.tag}" unless want.tag.blank? %></span>
+    <span class="timestamp">
+    <span class="timestamp">
+      Shared <%= time_ago_in_words(want.created_at) %> ago.
+    </span>
+    <% if current_user?(want.user) %>
+      <%= link_to "delete", want, method: :delete,
+                                       data: { confirm: "You sure?" },
+                                       title: want.wanted %>
+    <% end %>
+  </li>
+<% end %>
