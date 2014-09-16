@@ -12,6 +12,9 @@
 <div>
   <h3>All Users</h3>
   <ul class="users">
+    <tr>
+      <th><%= sortable "name" %></th>
+    </tr>
     <%= render @users %>
   </ul>
   <span class="pagination"><%= will_paginate @users, container: false %></span>

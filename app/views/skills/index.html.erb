@@ -13,6 +13,12 @@
   <h3>All Specialties</h3>
   <% if @skills %>
     <ul class="users">
+      <tr>
+        <th><%= sortable "skill", "Specialties" %></th> -
+        <th><%= sortable "level" %></th> -
+        <th><%= sortable "category" %></th> -
+        <th><%= sortable "tag" %></th>
+      </tr>
       <%= render @skills %>
     </ul>
     <span class="pagination"><%= will_paginate @skills, container: false %></span>

@@ -13,6 +13,12 @@
   <h3>All Interests</h3>
   <% if @wants %>
     <ul class="users">
+      <tr>
+        <th><%= sortable "wanted", "Interest" %></th> -
+        <th><%= sortable "priority" %></th> -
+        <th><%= sortable "category" %></th> -
+        <th><%= sortable "tag" %></th>
+      </tr>
       <%= render @wants %>
     </ul>
     <span class="pagination"><%= will_paginate @wants, container: false %></span>

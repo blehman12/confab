@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  helper_method :sort_column, :sort_direction
 
   def index
     if params[:search]
-      @users = User.search(params[:search]).paginate(page: params[:page], per_page: 30)
+      @users = User.search(params[:search]).paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
     else
-      @users = User.paginate(page: params[:page], per_page: 30)
+      @users = User.paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
     end
   end
 
@@ -65,15 +66,6 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
-  # def search
-  #   @users = User.search params[:search]
-  # end
-
-  # def search
-  #   q = params[:user][:name]
-  #   @users = User.find(:all, :conditions => ["name LIKE %?%",q])
-  # end
-
   def following
     @title = "Following"
     @user = User.find(params[:id])
@@ -102,5 +94,13 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
