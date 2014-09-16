@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'events/index'
+
+  get 'events/new'
+
+  get 'events/edit'
+
   resources :users do
     member do
       get :following, :followers, :search

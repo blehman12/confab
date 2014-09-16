@@ -34,6 +34,8 @@ ShowContent(d);
   <div class="box">
     <%= @user.email %>
   </div>
+  <%= link_to "delete account", :user, method: :delete,
+                                  data: { confirm: "You sure?" } %>
 <% end %>
 <section>
   <%= render 'shared/stats' %>
