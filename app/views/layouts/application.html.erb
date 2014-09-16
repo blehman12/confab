@@ -34,15 +34,12 @@
 
 <div id="container">
   <div class="header">
-    <div class="nav">
-      <%= render 'layouts/header' %>
-    </div>
     <div id="search">
       <div>
         <h4 style="display:inline">Search:</h4>
-        <a href="javascript:HideAllShowOne('usersearch')"><%= "#{@name_possessive}" %>Users</a> |
-        <a href="javascript:HideAllShowOne('wantsearch')"><%= "#{@name_possessive}" %>User Interests</a> |
-        <a href="javascript:HideAllShowOne('skillsearch')"><%= "#{@name_possessive}" %>User Specialties</a>
+        <a href="javascript:HideAllShowOne('usersearch')">Users</a> |
+        <a href="javascript:HideAllShowOne('wantsearch')">User Interests</a> |
+        <a href="javascript:HideAllShowOne('skillsearch')">User Specialties</a>
       </div>
       <div id="usersearch" style="display:none">
         <%= render 'users/search' %>
@@ -53,6 +50,9 @@
       <div id="skillsearch" style="display:none">
         <%= render 'skills/search' %>
       </div>
+    </div>
+    <div class="nav">
+      <%= render 'layouts/header' %>
     </div>
   </div>
   <div class="content">
