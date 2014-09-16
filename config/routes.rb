@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'events/index'
-
-  get 'events/new'
-
-  get 'events/edit'
-
   resources :users do
     member do
       get :following, :followers, :search
@@ -15,6 +9,8 @@ Rails.application.routes.draw do
   resources :wants, only: [:create, :destroy, :index]
   resources :skills, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
+  resources :events
+
   root 'pages#home'
 
   match '/help',    to: 'pages#help',       via: 'get'

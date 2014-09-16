@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822230422) do
+ActiveRecord::Schema.define(version: 20140916205851) do
 
   create_table "communications", force: true do |t|
     t.string   "excomm"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(version: 20140822230422) do
   end
 
   add_index "communications", ["user_id", "created_at"], name: "index_communications_on_user_id_and_created_at"
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.integer  "recurrence"
+    t.date     "start"
+    t.date     "stop"
+    t.string   "location"
+    t.string   "address"
+    t.string   "owner"
+    t.string   "contact"
+    t.integer  "theme"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -54,6 +68,7 @@ ActiveRecord::Schema.define(version: 20140822230422) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
+    t.integer  "show_email"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"

@@ -42,6 +42,10 @@ ShowContent(d);
 </section>
 <%= render 'follow_form' if signed_in? %>
 <br>
+
+<h3>Events</h3>
+<%= link_to "create new event", new_event_path %>
+
 <div>
   <a href="javascript:HideAllShowOne('userwants')"><%= "#{@name_possessive}" %> Interests</a> |
   <a href="javascript:HideAllShowOne('userskills')"><%= "#{@name_possessive}" %> Specialties</a> |

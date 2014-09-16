@@ -1,0 +1,22 @@
+<% provide(:title, @event.name) %>
+
+<div class="box">
+  <h1>
+    <%= @event.name %>
+  </h1>
+</div>
+<h4><%= @event.owner %><br>
+  <%= @event.location %><br>
+  <%= @event.address %><br>
+  <%= "#{@event.start} through #{@event.stop}" %><br>
+  <%= "One time event" if @event.recurrence == 0 %>
+  <%= "Annual event" if @event.recurrence == 1 %>
+  <%= "Monthly event" if @event.recurrence == 2 %>
+  <%= "Weekly event" if @event.recurrence == 3 %><br>
+  <%= @event.theme %>
+</h4>
+
+<% if (@owner == current_user) || current_user.try(:admin?) %>
+  <%= link_to "delete event", :event, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+<% end %>

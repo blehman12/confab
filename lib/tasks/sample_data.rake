@@ -1,14 +1,14 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    admin = User.create!(name: "Example User",
-                         email: "example@test.org",
-                         password: "foobar",
-                         password_confirmation: "foobar",
-                         admin: true)
+    # admin = User.create!(name: "Example User",
+    #                      email: "example@test.org",
+    #                      password: "foobar",
+    #                      password_confirmation: "foobar",
+    #                      admin: true)
     99.times do |n|
       name  = Faker::Name.name
-      email = "example-#{n+1}@example.org"
+      email = "example_email#{n+1}@example.org"
       password  = "password"
       User.create!(name: name,
                    email: email,
@@ -26,20 +26,20 @@ namespace :db do
     end
 
     users = User.all
+    # 5.times do
+    #   excomm = Faker::Lorem.words(5)
+    #   userinfo = Faker::Lorem.words(2)
+    #   users.each { |user| user.communications.create!(excomm: excomm, userinfo: userinfo) }
+    # end
     5.times do
-      excomm = Faker::Lorem.words(5)
-      userinfo = Faker::Lorem.words(2)
-      users.each { |user| user.communications.create!(excomm: excomm, userinfo: userinfo) }
-    end
-    5.times do
-      want = Faker::Lorem.words(2)
+      want = Faker::Lorem.words(1)
       priority = Faker::Lorem.digit
       tag = Faker::Lorem.words(1)
       category = Faker::Lorem.words(1)
       users.each { |user| user.wants.create!(wanted: want, priority: priority, tag: tag, category: category) }
     end
     5.times do
-      skill = Faker::Lorem.words(2)
+      skill = Faker::Lorem.words(1)
       level = Faker::Lorem.digit
       tag = Faker::Lorem.words(1)
       category = Faker::Lorem.words(1)
