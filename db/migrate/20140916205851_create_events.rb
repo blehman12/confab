@@ -9,9 +9,11 @@ class CreateEvents < ActiveRecord::Migration
       t.string :address
       t.string :owner
       t.string :contact
-      t.integer :theme
+      t.string :theme
 
       t.timestamps
     end
+
+    add_index :events, :theme_id
   end
 end
