@@ -17,7 +17,7 @@
 <%= f.text_field :address %>
 
 <%= f.label :theme %>
-<%= f.collection_select :theme, Event::THEME, :to_int, :to_int %><br>
+<%= f.collection_select :theme, Event::THEME, :to_s, :to_s, required: true %><br>
 
 <%= label :recurrence, "One time event" %>
 <%= f.radio_button :recurrence, 0, checked: true %>

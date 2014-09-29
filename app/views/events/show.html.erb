@@ -9,10 +9,10 @@
   <%= @event.location %><br>
   <%= @event.address %><br>
   <%= "#{@event.start} through #{@event.stop}" %><br>
-  <%= "One time event" if @event.recurrence == 0 %>
-  <%= "Annual event" if @event.recurrence == 1 %>
-  <%= "Monthly event" if @event.recurrence == 2 %>
-  <%= "Weekly event" if @event.recurrence == 3 %><br>
+  <%= "One time event" if (@event.recurrence == 0) %>
+  <%= "Annual event" if (@event.recurrence == 1) %>
+  <%= "Monthly event" if (@event.recurrence == 2) %>
+  <%= "Weekly event" if (@event.recurrence == 3) %><br>
   <%= @event.theme %>
 </h4>
 
