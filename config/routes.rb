@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  resources :technologies
+
+  resources :businesses
+
+  resources :arts_crafts
+
+  resources :games
+
+  resources :transportations
+
+  resources :themes
+
   resources :users do
     member do
       get :following, :followers, :search, :attendee

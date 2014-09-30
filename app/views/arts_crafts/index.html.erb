@@ -1,0 +1,27 @@
+<h1>Listing arts_crafts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Parent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @arts_crafts.each do |arts_craft| %>
+      <tr>
+        <td><%= arts_craft.name %></td>
+        <td><%= arts_craft.parent_id %></td>
+        <td><%= link_to 'Show', arts_craft %></td>
+        <td><%= link_to 'Edit', edit_arts_craft_path(arts_craft) %></td>
+        <td><%= link_to 'Destroy', arts_craft, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Arts craft', new_arts_craft_path %>

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924234257) do
+ActiveRecord::Schema.define(version: 20140929235128) do
+
+  create_table "arts_crafts", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "attendances", force: true do |t|
     t.integer  "event_id"
@@ -23,6 +30,13 @@ ActiveRecord::Schema.define(version: 20140924234257) do
   add_index "attendances", ["attendee_id", "event_id"], name: "index_attendances_on_attendee_id_and_event_id", unique: true
   add_index "attendances", ["attendee_id"], name: "index_attendances_on_attendee_id"
   add_index "attendances", ["event_id"], name: "index_attendances_on_event_id"
+
+  create_table "businesses", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "communications", force: true do |t|
     t.string   "excomm"
@@ -44,6 +58,13 @@ ActiveRecord::Schema.define(version: 20140924234257) do
     t.string   "owner"
     t.string   "contact"
     t.integer  "theme"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,6 +91,26 @@ ActiveRecord::Schema.define(version: 20140924234257) do
   end
 
   add_index "skills", ["user_id", "created_at"], name: "index_skills_on_user_id_and_created_at"
+
+  create_table "technologies", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "themes", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transportations", force: true do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
