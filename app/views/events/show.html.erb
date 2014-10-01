@@ -1,22 +1,74 @@
-<% provide(:title, @event.name) %>
+<p id="notice"><%= notice %></p>
 
-<div class="box">
-  <h1>
-    <%= @event.name %>
-  </h1>
-</div>
-<h4><%= @event.owner %><br>
-  <%= @event.location %><br>
-  <%= @event.address %><br>
-  <%= "#{@event.start} through #{@event.stop}" %><br>
-  <%= "One time event" if (@event.recurrence == 0) %>
-  <%= "Annual event" if (@event.recurrence == 1) %>
-  <%= "Monthly event" if (@event.recurrence == 2) %>
-  <%= "Weekly event" if (@event.recurrence == 3) %><br>
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @event.start %>
+</p>
+
+<p>
+  <strong>Stop:</strong>
+  <%= @event.stop %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @event.location %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @event.address %>
+</p>
+
+<p>
+  <strong>Recurrence:</strong>
+  <%= @event.recurrence %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user_id %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @event.contact %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
   <%= @event.theme %>
-</h4>
+</p>
 
-<% if (@owner == current_user) || current_user.try(:admin?) %>
-  <%= link_to "delete event", :event, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-<% end %>
+<p>
+  <strong>Category:</strong>
+  <%= @event.category %>
+</p>
+
+<p>
+  <strong>Subcategorya:</strong>
+  <%= @event.subcategoryA %>
+</p>
+
+<p>
+  <strong>Subcategoryb:</strong>
+  <%= @event.subcategoryB %>
+</p>
+
+<p>
+  <strong>Subcategoryc:</strong>
+  <%= @event.subcategoryC %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>

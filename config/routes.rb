@@ -1,19 +1,9 @@
 Rails.application.routes.draw do
-  resources :technologies
-
-  resources :businesses
-
-  resources :arts_crafts
-
-  resources :games
-
-  resources :transportations
-
-  resources :themes
+  resources :events
 
   resources :users do
     member do
-      get :following, :followers, :search, :attendee
+      get :following, :followers, :search
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
@@ -21,12 +11,7 @@ Rails.application.routes.draw do
   resources :wants, only: [:create, :destroy, :index]
   resources :skills, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
-  resources :attendances, only: [:create, :destroy]
-  resources :events do
-    member do
-      get :attending, :search
-    end
-  end
+
 
   root 'pages#home'
 

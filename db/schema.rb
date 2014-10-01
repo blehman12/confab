@@ -11,32 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929235128) do
-
-  create_table "arts_crafts", force: true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "attendances", force: true do |t|
-    t.integer  "event_id"
-    t.integer  "attendee_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "attendances", ["attendee_id", "event_id"], name: "index_attendances_on_attendee_id_and_event_id", unique: true
-  add_index "attendances", ["attendee_id"], name: "index_attendances_on_attendee_id"
-  add_index "attendances", ["event_id"], name: "index_attendances_on_event_id"
-
-  create_table "businesses", force: true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20141001192837) do
 
   create_table "communications", force: true do |t|
     t.string   "excomm"
@@ -50,24 +25,24 @@ ActiveRecord::Schema.define(version: 20140929235128) do
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.integer  "recurrence"
     t.date     "start"
     t.date     "stop"
     t.string   "location"
     t.string   "address"
-    t.string   "owner"
+    t.string   "recurrence"
+    t.string   "user"
+    t.integer  "user_id"
     t.string   "contact"
-    t.integer  "theme"
+    t.string   "theme"
+    t.string   "category"
+    t.string   "subcategoryA"
+    t.string   "subcategoryB"
+    t.string   "subcategoryC"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "games", force: true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "events", ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
@@ -92,26 +67,6 @@ ActiveRecord::Schema.define(version: 20140929235128) do
 
   add_index "skills", ["user_id", "created_at"], name: "index_skills_on_user_id_and_created_at"
 
-  create_table "technologies", force: true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "themes", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "transportations", force: true do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -120,7 +75,7 @@ ActiveRecord::Schema.define(version: 20140929235128) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",           default: false
-    t.integer  "show_email"
+    t.integer  "show_email",      default: 0
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
