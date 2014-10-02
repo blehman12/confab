@@ -22,7 +22,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
+        <td><%= link_to event.name, event %></td>
         <td><%= event.start %></td>
         <td><%= event.stop %></td>
         <td><%= event.location %></td>
