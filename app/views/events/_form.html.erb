@@ -32,41 +32,46 @@
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <%= f.label :recurrence %><br>
-    <%= f.text_field :recurrence %>
-  </div>
-  <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :contact %><br>
+    <%= f.label :contact, "Please enter the primary contact information or this event:" %><br>
     <%= f.text_field :contact %>
   </div>
+
+  <%= f.radio_button :recurrence, 0, checked: true %>
+  <%= label :recurrence, "One time event" %><br>
+
+  <%= f.radio_button :recurrence, 1 %>
+  <%= label :recurrence, "Annual"%><br>
+
+  <%= f.radio_button :recurrence, 2 %>
+  <%= label :recurrence, "Monthly" %><br>
+
+  <%= f.radio_button :recurrence, 3 %>
+  <%= label :recurrence, "Weekly"%>
+
   <div class="field">
-    <%= f.label :theme %><br>
-    <%= f.text_field :theme %>
+    <%= f.collection_select :theme, Event::THEME, :to_s, :to_s, required: true, prompt: 'Select a Primary Theme for Your Event' %>
   </div>
+
   <div class="field">
-    <%= f.label :category %><br>
+    <%= f.label :category, "Category" %><br>
     <%= f.text_field :category %>
   </div>
+
   <div class="field">
-    <%= f.label :subcategoryA %><br>
+    <%= f.label :subcategoryA, "Subcategory" %><br>
     <%= f.text_field :subcategoryA %>
   </div>
+
   <div class="field">
-    <%= f.label :subcategoryB %><br>
+    <%= f.label :subcategoryB, "Subcategory" %><br>
     <%= f.text_field :subcategoryB %>
   </div>
+
   <div class="field">
-    <%= f.label :subcategoryC %><br>
+    <%= f.label :subcategoryC, "Subcategory" %><br>
     <%= f.text_field :subcategoryC %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

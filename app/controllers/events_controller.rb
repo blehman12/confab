@@ -1,10 +1,21 @@
 class EventsController < ApplicationController
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  # before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy
+  helper_method :sort_column, :sort_direction
+  before_action :correct_user,   only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:search]
+      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 30)
+      # .order(sort_column + " " + sort_direction)
+    else
+      @events = Event.paginate(page: params[:page], per_page: 30)
+      # .order(sort_column + " " + sort_direction)
+    end
   end
 
   # GET /events/1
@@ -71,4 +82,17 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme, :category, :subcategoryA, :subcategoryB, :subcategoryC)
     end
+
+    def correct_user
+      @event = current_user.events.find_by(id: params[:id])
+      redirect_to root_url if @event.nil?
+    end
+
+    # def sort_column
+    #   event.column_names.include?(params[:sort]) ? params[:sort] : "event"
+    # end
+
+    # def sort_direction
+    #   %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    # end
 end
