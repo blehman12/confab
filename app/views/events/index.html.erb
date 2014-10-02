@@ -1,15 +1,11 @@
-<h1>Listing events</h1>
+<h1>Events</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>Start</th>
-      <th>Stop</th>
       <th>Location</th>
-      <th>Address</th>
-      <th>Recurrence</th>
-      <th>Contact</th>
       <th>Theme</th>
       <th>Category</th>
       <th>Subcategory</th>
@@ -24,19 +20,17 @@
       <tr>
         <td><%= link_to event.name, event %></td>
         <td><%= event.start %></td>
-        <td><%= event.stop %></td>
         <td><%= event.location %></td>
-        <td><%= event.address %></td>
-        <td><%= event.recurrence %></td>
-        <td><%= event.contact %></td>
         <td><%= event.theme %></td>
         <td><%= event.category %></td>
         <td><%= event.subcategoryA %></td>
         <td><%= event.subcategoryB %></td>
         <td><%= event.subcategoryC %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.admin? || current_user?(event.user) %>
+          <td><%= link_to "edit", edit_event_path(event) %> |
+          <%= link_to "delete", event, method: :delete,
+                                  data: { confirm: "You sure?" } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

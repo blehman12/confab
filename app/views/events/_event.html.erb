@@ -1,0 +1,20 @@
+<li class="users">
+  <span class="event"><%= link_to event.name.upcase, event %></span> -
+  <span class="name"><%= "#{event.user.name}" %></span> -
+  <span class="priority"><%= "#{event.start} through #{event.stop}" %></span> -
+  <span class="priority"><%= event.location %></span> -
+  <span class="priority"><%= event.address %></span><br>
+  <span class="category" style="padding-left:2em"><%= event.theme.upcase %></span> |
+  <span class="category"><%= "#{event.category} -" unless event.category.blank? %></span>
+  <span class="category"><%= "#{event.subcategoryA} -" unless event.category.blank? %></span>
+  <span class="category"><%= "#{event.subcategoryB} -" unless event.category.blank? %></span>
+  <span class="category"><%= "#{event.subcategoryC}" unless event.category.blank? %></span>
+  <span class="timestamp">
+    Shared <%= time_ago_in_words(event.created_at) %> ago.
+  </span>
+  <% if current_user.admin? || current_user?(event.user) %>
+    <td><%= link_to "edit", edit_event_path(event) %> |
+    <%= link_to "delete", event, method: :delete,
+                            data: { confirm: "You sure?" } %></td>
+  <% end %>
+</li>

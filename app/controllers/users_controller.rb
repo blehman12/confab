@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @want = current_user.wants.build if signed_in?
     @skills = @user.skills.paginate(page: params[:page])
     @skill = current_user.skills.build if signed_in?
+    @events = @user.events.paginate(page: params[:page])
+    @event = current_user.events.build if signed_in?
     if @user == current_user
       @name_for_wants = "You Are"
       @name_none_posted = "You have"

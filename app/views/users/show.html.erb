@@ -11,7 +11,7 @@ if(document.getElementById(d).style.display == "none") { document.getElementById
 else { document.getElementById(d).style.display = "none"; }
 }
 function HideAllShowOne(d) {
-var IDvaluesOfEachDiv = "userwants userskills usercomm";
+var IDvaluesOfEachDiv = "userwants userskills usercomm userevents";
 
 //-------------------------------------------------------------
 IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/[,\s"']/g," ");
@@ -42,17 +42,28 @@ ShowContent(d);
 </section>
 <%= render 'follow_form' if signed_in? %>
 <br>
-
-<h3>Events</h3>
-<%= link_to "create new event", new_event_path %>
-
 <div>
+  <a href="javascript:HideAllShowOne('userevents')"><%= "#{@name_possessive}" %> Events</a> |
   <a href="javascript:HideAllShowOne('userwants')"><%= "#{@name_possessive}" %> Interests</a> |
   <a href="javascript:HideAllShowOne('userskills')"><%= "#{@name_possessive}" %> Specialties</a> |
   <a href="javascript:HideAllShowOne('usercomm')"><%= "#{@name_possessive}" %> Preferred Communications</a>
 </div>
-<br>
 <div class="box">
+  <div id="userevents" style="display:none;">
+    <h3><%= "#{@name_possessive} Events" %> (<%= @user.events.count %>)</h3>
+    <div>
+      <% if @user.events.any? %>
+        <ol>
+          <%= render @events %>
+        </ol>
+        <%= will_paginate @events, container: false %>
+      <% else %>
+        <p><%= @name_none_posted %> not posted events.</p>
+      <% end %>
+    <%= link_to "create new event", new_event_path %>
+    </div>
+  </div>
+
   <div id="userwants" style="display:none;">
     <h3><%= "#{@name_possessive} Interests" %> (<%= @user.wants.count %>)</h3>
     <div>

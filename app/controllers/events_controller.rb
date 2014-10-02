@@ -16,6 +16,7 @@ class EventsController < ApplicationController
       @events = Event.paginate(page: params[:page], per_page: 30)
       # .order(sort_column + " " + sort_direction)
     end
+    @index = true
   end
 
   # GET /events/1
