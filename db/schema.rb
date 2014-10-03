@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141001192837) do
+ActiveRecord::Schema.define(version: 20141003204420) do
 
   create_table "communications", force: true do |t|
     t.string   "excomm"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20141001192837) do
     t.string   "subcategoryC"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "tags"
   end
 
   add_index "events", ["user_id", "created_at"], name: "index_events_on_user_id_and_created_at"

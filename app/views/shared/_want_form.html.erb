@@ -13,8 +13,8 @@
     #<%= f.text_field :tag, placeholder: "(e.g. rubyonrails, doctorwho, etc.)" %>
   </div>
   <div class="field">
-    <%= f.label :category, "Please enter a category for your specialty." %><br>
-    <%= f.text_field :category, placeholder: "(e.g. comics, financial industry, etc.)" %>
+    <%= f.label :category, "Please select a relevant theme for your specialty." %><br>
+    <%= f.collection_select :category, Event::THEME, :to_s, :to_s, required: true, prompt: 'Select a Theme' %>
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

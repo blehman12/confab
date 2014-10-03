@@ -29,24 +29,26 @@
   </div>
   <div class="field">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_area :address %>
   </div>
   <div class="field">
     <%= f.label :contact, "Please enter the primary contact information or this event:" %><br>
     <%= f.text_field :contact %>
   </div>
 
-  <%= f.radio_button :recurrence, 0, checked: true %>
-  <%= label :recurrence, "One time event" %><br>
+  <div class="field">
+    <%= f.radio_button :recurrence, 0, checked: true %>
+    <%= label :recurrence, "One time event" %><br>
 
-  <%= f.radio_button :recurrence, 1 %>
-  <%= label :recurrence, "Annual"%><br>
+    <%= f.radio_button :recurrence, 1 %>
+    <%= label :recurrence, "Annual"%><br>
 
-  <%= f.radio_button :recurrence, 2 %>
-  <%= label :recurrence, "Monthly" %><br>
+    <%= f.radio_button :recurrence, 2 %>
+    <%= label :recurrence, "Monthly" %><br>
 
-  <%= f.radio_button :recurrence, 3 %>
-  <%= label :recurrence, "Weekly"%>
+    <%= f.radio_button :recurrence, 3 %>
+    <%= label :recurrence, "Weekly"%>
+  </div>
 
   <div class="field">
     <%= f.collection_select :theme, Event::THEME, :to_s, :to_s, required: true, prompt: 'Select a Primary Theme for Your Event' %>
@@ -57,19 +59,25 @@
     <%= f.text_field :category %>
   </div>
 
-  <div class="field">
-    <%= f.label :subcategoryA, "Subcategory" %><br>
-    <%= f.text_field :subcategoryA %>
+  <%= f.label :subcategoryA, "Additional information or subcategories:" %><small> (optional)</small><br><br>
+
+  <div class="indent-2em field">
+    <p>
+      <%= f.text_field :subcategoryA %>
+    </p>
+
+    <p>
+      <%= f.text_field :subcategoryB %>
+    </p>
+
+    <p>
+      <%= f.text_field :subcategoryC %>
+    </p>
   </div>
 
   <div class="field">
-    <%= f.label :subcategoryB, "Subcategory" %><br>
-    <%= f.text_field :subcategoryB %>
-  </div>
-
-  <div class="field">
-    <%= f.label :subcategoryC, "Subcategory" %><br>
-    <%= f.text_field :subcategoryC %>
+    <%= f.label :tags, "Add tags for your event:" %><small> (optional)</small><br>
+    <%= f.text_field :tags %>
   </div>
 
   <div class="actions">
