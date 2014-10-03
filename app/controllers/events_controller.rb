@@ -22,6 +22,16 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.find(params[:id])
+    if @event.recurrence = 0
+      @recurrence = "One time event"
+    elsif @event.recurrence = 1
+      @recurrence = "Annual event"
+    elsif @event.recurrence = 2
+      @recurrence = "Monthly event"
+    else @event.recurrence = 3
+      @recurrence = "Weekly event"
+    end
   end
 
   # GET /events/new
