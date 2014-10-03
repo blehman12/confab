@@ -17,6 +17,14 @@ class EventsController < ApplicationController
       # .order(sort_column + " " + sort_direction)
     end
     @index = true
+    @events.each do |event|
+      if event.stop.blank?
+        @date_range = event.start.strftime("%b %d, %Y")
+      else
+        @date_range = "#{event.start.strftime("%b %d
+        ")} – #{event.stop.strftime("%b %d, %Y")}"
+      end
+    end
   end
 
   # GET /events/1
