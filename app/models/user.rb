@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :wants, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :events
+  has_many :attendances, foreign_key: "attended_id", dependent: :destroy
+  has_many :attended_events, through: :attendances, source: :attended
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
@@ -51,6 +53,19 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by(followed_id: other_user.id).destroy
   end
+
+#adjust to match attending? attend! unattend!
+  # def following?(other_user)
+  #   relationships.find_by(followed_id: other_user.id)
+  # end
+
+  # def follow!(other_user)
+  #   relationships.create!(followed_id: other_user.id)
+  # end
+
+  # def unfollow!(other_user)
+  #   relationships.find_by(followed_id: other_user.id).destroy
+  # end
 
   def self.search(query)
     where("name like ?", "%#{query}%")

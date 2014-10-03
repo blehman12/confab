@@ -98,6 +98,13 @@ class EventsController < ApplicationController
     end
   end
 
+  def attending
+    @title = "Attendees"
+    @user = User.find(params[:id])
+    @users = @users.attending_users.paginate(page: params[:page])
+    render 'show_attending'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

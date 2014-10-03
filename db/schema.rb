@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003204420) do
+ActiveRecord::Schema.define(version: 20141003232623) do
+
+  create_table "attendances", force: true do |t|
+    t.integer  "attendee_id"
+    t.integer  "attended_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attendances", ["attended_id"], name: "index_attendances_on_attended_id"
+  add_index "attendances", ["attendee_id", "attended_id"], name: "index_attendances_on_attendee_id_and_attended_id", unique: true
+  add_index "attendances", ["attendee_id"], name: "index_attendances_on_attendee_id"
 
   create_table "communications", force: true do |t|
     t.string   "excomm"
