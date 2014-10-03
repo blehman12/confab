@@ -3,7 +3,7 @@
   <li class="users">
     <span class="skill"><%= "#{skill.skill[0].upcase}#{skill.skill[1..-1].downcase}" %></span> -
     <span class="name"><%= link_to "#{skill.user.name}", user_path(skill.user_id) %></span> -
-    <span class="priority">Level: <%= skill.level %></span> -
+    <span class="priority">Level: <%= skill.level %></span>
     <span class="category"><%= " - #{skill.category.upcase}" unless skill.category.blank? %></span>
     <span class="tag"><%= " - \##{skill.tag}" unless skill.tag.blank? %></span>
     <span class="timestamp">
