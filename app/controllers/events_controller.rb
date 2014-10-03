@@ -40,6 +40,12 @@ class EventsController < ApplicationController
     else @event.recurrence == 3
       @recurrence = "Weekly event"
     end
+    if event.stop.blank?
+      @date_range = event.start.strftime("%B %d, %Y")
+    else
+      @date_range = "#{event.start.strftime("%B %d
+      ")} through #{event.stop.strftime("%B %d, %Y")}"
+    end
   end
 
   # GET /events/new
