@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :location %><br>
-    <%= f.text_field :location %>
+    <%= f.text_field :location, placeholder: "e.g.Portland Convention Center" %>
   </div>
   <div class="field">
     <%= f.label :address %><br>
@@ -77,7 +77,7 @@
 
   <div class="field">
     <%= f.label :tags, "Add tags for your event:" %><small> (optional)</small><br>
-    <%= f.text_field :tags %>
+    #<%= f.text_field :tags, placeholder: "e.g. classic cars, rubyonrails, etc." %>
   </div>
 
   <div class="actions">

@@ -1,6 +1,7 @@
 <h1>Events</h1>
 
-<table>
+<div class="table-responsive">
+<table class="table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -8,9 +9,8 @@
       <th>Location</th>
       <th>Theme</th>
       <th>Category</th>
-      <th>Subcategory</th>
-      <th>Subcategory</th>
-      <th>Subcategory</th>
+      <th>Subcategories</th>
+      <th>Tags</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,9 +23,12 @@
         <td><%= event.location %></td>
         <td><%= event.theme %></td>
         <td><%= event.category %></td>
-        <td><%= event.subcategoryA %></td>
-        <td><%= event.subcategoryB %></td>
-        <td><%= event.subcategoryC %></td>
+        <td><ul>
+          <li><%= event.subcategoryA %></li>
+          <li><%= event.subcategoryB %></li>
+          <li><%= event.subcategoryC %></li>
+        </ul></td>
+        <td><%= event.tags %></td>
         <% if current_user.admin? || current_user?(event.user) %>
           <td><%= link_to "edit", edit_event_path(event) %> |
           <%= link_to "delete", event, method: :delete,
@@ -35,7 +38,6 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
+</div>
 
 <%= link_to 'New Event', new_event_path %>
