@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :contact, "Please enter the primary contact information or this event:" %><br>
-    <%= f.text_field :contact %>
+    <%= f.text_field :contact, placeholder: "info@event.com" %>
   </div>
 
   <div class="field">
@@ -56,7 +56,7 @@
 
   <div class="field">
     <%= f.label :category, "Category" %><br>
-    <%= f.text_field :category %>
+    <%= f.text_field :category, placeholder: "e.g. Cars, Computers, etc." %>
   </div>
 
   <%= f.label :subcategoryA, "Additional information or subcategories:" %><small> (optional)</small><br><br>
