@@ -44,7 +44,7 @@ ShowContent(d);
 <% @user ||= current_user %>
   <section>
     <h3>What would you like to do?</h3>
-    <h4><%= link_to @events, "Find Events" %> | <%= link_to @users, "Find Other Users" %> | <%= link_to @wants, "Browse Other Users' Interests" %> | <%= link_to @skills, "Browse Other Users' Specialties" %></h4>
+    <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Other Users", users_path %> | <%= link_to "Browse Other Users' Interests", wants_path %> | <%= link_to "Browse Other Users' Specialties", skills_path %></h4>
   </section>
 
   <div class="sidebar">
