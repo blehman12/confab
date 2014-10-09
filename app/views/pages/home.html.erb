@@ -42,10 +42,6 @@ ShowContent(d);
 
 <% if signed_in? %>
 <% @user ||= current_user %>
-  <section>
-    <h3>What would you like to do?</h3>
-    <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Other Users", users_path %> | <%= link_to "Browse Other Users' Interests", wants_path %> | <%= link_to "Browse Other Users' Specialties", skills_path %></h4>
-  </section>
 
   <div class="sidebar">
     <aside class="span4">

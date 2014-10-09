@@ -34,9 +34,6 @@
 
 <div id="container">
   <div class="header">
-    <div class="navbar-inner" style="display:inline">
-      <h1><%= link_to "Confab", root_path %></h1>
-    </div>
     <div id="search" class="navbar-inner" style="display:none">
       <div>
         <h4 style="display:inline">Search:</h4>
@@ -57,11 +54,19 @@
     <div class="nav">
       <%= render 'layouts/header' %>
     </div>
+    <div class="navbar-inner" style="display:inline">
+      <h1><%= link_to "Confab", root_path %></h1>
+    </div>
   </div>
   <div class="content">
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
+
+    <section>
+      <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Other Users", users_path %> | <%= link_to "Browse Other Users' Interests", wants_path %> | <%= link_to "Browse Other Users' Specialties", skills_path %></h4>
+    </section>
+
     <div>
       <%= yield %>
     </div>
