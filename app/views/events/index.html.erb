@@ -1,6 +1,35 @@
-<h1>Events</h1>
+<h2>Events</h2>
+<div><%= render 'events/search' %></div>
 
-<div class="table-responsive">
+<div>
+<% form_tag events_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Events" %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+</div>
+<br>
+<div>
+  <% if @events %>
+    <ul class="users">
+      <h5 style="display:inline">Sort By:</h5>
+      <tr>
+        <th><%= sortable "name", "Name" %></th>
+        <th><%= sortable "start", "Start Date" %></th>
+        <th><%= sortable "theme", "Theme" %></th>
+        <th><%= sortable "category", "Category" %></th>
+        <th><%= sortable "tags", "Tags" %></th>
+      </tr>
+      <%= render @events %>
+    </ul>
+    <span class="pagination"><%= will_paginate @events, container: false %></span>
+  <% else %>
+    <h5>No specialties found.</h5>
+  <% end %>
+</div>
+
+<div class="table-responsive" style="display:none">
 <table class="table-striped">
   <thead>
     <tr>

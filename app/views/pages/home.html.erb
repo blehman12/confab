@@ -21,26 +21,46 @@ var IDlist = IDvaluesOfEachDiv.split(" ");
 for(var i=0; i<IDlist.length; i++) { HideContent(IDlist[i]); }
 ShowContent(d);
 }</script>
-<h1>Confab8 Demo App</h1>
-<p>This is the home page. It could either be primarily dedicated to getting users to sign in/up or it could allow for browsing of various conferences currently on Confab.</p>
+
+<div>
+  <% if signed_in? %>
+  <% @user ||= current_user %>
+    <h5><%= "Welcome, #{@user.name}" %></h5>
+    <section>
+      <%= render 'shared/stats' %>
+    </section><br>
+    <section>
+      <%= render 'shared/user_attendance_stats' %>
+    </section>
+  <% end %>
+</div><br>
+
+<p>Welcome to Confab, a site for making connections at events and conferences of all kinds.  Lorem ipsum dolor sit amet, at ius tantas prompta, ius congue fastidii ad. An est quis erat, ei case audire facilisis sed, utamur verterem facilisi id pro. Option consetetur ei quo, velit partem omnium ei nam, commodo invidunt eos ut. Nec id convenire voluptaria, est inani admodum eu, sed exerci expetendis in.</p>
+
+<p>Ipsum oblique ius eu, mel ne movet legere quidam, eam eu timeam temporibus conclusionemque. Ius et stet forensibus, vix electram liberavisse ea. Est elit ponderum in, sed velit aperiri facilis ad. Vide mazim legere nam ei, ius sint omittam facilisi et.</p>
+
+<p>Duo ea nulla elaboraret, mea ad ullum honestatis. At labores praesent pri, vim disputando necessitatibus ex. Ignota constituto has ne. Pri sonet postea sententiae in, te eam omnium antiopam prodesset, cu est falli ignota alienum. Id adhuc assentior nec, vitae urbanitas ne sed.
+</p>
 
 <% if signed_in? %>
 <% @user ||= current_user %>
   <section>
-    <%= render 'shared/stats' %>
+    <h3>What would you like to do?</h3>
+    <h4><%= link_to @events, "Find Events" %> | <%= link_to @users, "Find Other Users" %> | <%= link_to @wants, "Browse Other Users' Interests" %> | <%= link_to @skills, "Browse Other Users' Specialties" %></h4>
   </section>
-  <aside class="span4">
-    <a href="javascript:ReverseDisplay('wantform')">Add a New Interest</a> |
-    <a href="javascript:ReverseDisplay('skillform')">Add a New Specialty</a>
-    <section id="wantform" style="display:none">
-      <%= render 'shared/want_form' %>
-    </section>
-    <section id="skillform" style="display:none">
-      <%= render 'shared/skill_form' %>
-    </section>
-  </aside>
 
-<br>
+  <div class="sidebar">
+    <aside class="span4">
+      <a href="javascript:ReverseDisplay('wantform')">Add a New Interest</a> |
+      <a href="javascript:ReverseDisplay('skillform')">Add a New Specialty</a>
+      <section id="wantform" style="display:none">
+        <%= render 'shared/want_form' %>
+      </section>
+      <section id="skillform" style="display:none">
+        <%= render 'shared/skill_form' %>
+      </section>
+    </aside>
+  </div>
 
   <aside class="span4">
     <section>

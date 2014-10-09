@@ -54,18 +54,18 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
-#adjust to match attending? attend! unattend!
-  # def following?(other_user)
-  #   relationships.find_by(followed_id: other_user.id)
-  # end
 
-  # def follow!(other_user)
-  #   relationships.create!(followed_id: other_user.id)
-  # end
+  def attending?(event)
+    attendances.find_by(attended_id: event.id)
+  end
 
-  # def unfollow!(other_user)
-  #   relationships.find_by(followed_id: other_user.id).destroy
-  # end
+  def attend!(event)
+    attendances.create!(attended_id: event.id)
+  end
+
+  def unattend!(event)
+    attendances.find_by(attended_id: event.id).destroy
+  end 
 
   def self.search(query)
     where("name like ?", "%#{query}%")

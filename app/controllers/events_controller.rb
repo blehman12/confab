@@ -1,9 +1,8 @@
 class EventsController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-  # before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   helper_method :sort_column, :sort_direction
-  before_action :correct_user,   only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
@@ -18,7 +17,7 @@ class EventsController < ApplicationController
     end
     @index = true
     @events.each do |event|
-      if event.stop.blank?
+      if event.stop == event.start
         @date_range = event.start.strftime("%b %d, %Y")
       else
         @date_range = "#{event.start.strftime("%b %d
@@ -40,11 +39,11 @@ class EventsController < ApplicationController
     else @event.recurrence == 3
       @recurrence = "Weekly event"
     end
-    if event.stop.blank?
-      @date_range = event.start.strftime("%B %d, %Y")
+    if @event.stop == @event.start
+      @date_range = @event.start.strftime("%B %d, %Y")
     else
-      @date_range = "#{event.start.strftime("%B %d
-      ")} through #{event.stop.strftime("%B %d, %Y")}"
+      @date_range = "#{@event.start.strftime("%B %d
+      ")} through #{@event.stop.strftime("%B %d, %Y")}"
     end
   end
 
@@ -55,6 +54,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event = Event.find(params[:id])
   end
 
   # POST /events
@@ -62,11 +62,13 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
+    @event.id = current_user.attendances.attended_id
 
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
+        @event.attend!(current_user)
       else
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -98,10 +100,10 @@ class EventsController < ApplicationController
     end
   end
 
-  def attending
+  def attendees
     @title = "Attendees"
-    @user = User.find(params[:id])
-    @users = @users.attending_users.paginate(page: params[:page])
+    @event = Event.find(params[:id])
+    @attendees = @event.attending_users.paginate(page: params[:page])
     render 'show_attending'
   end
 
@@ -116,16 +118,20 @@ class EventsController < ApplicationController
       params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme, :category, :subcategoryA, :subcategoryB, :subcategoryC)
     end
 
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
     def correct_user
       @event = current_user.events.find_by(id: params[:id])
       redirect_to root_url if @event.nil?
     end
 
-    # def sort_column
-    #   event.column_names.include?(params[:sort]) ? params[:sort] : "event"
-    # end
+    def sort_column
+      Event.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
 
-    # def sort_direction
-    #   %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    # end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
 end

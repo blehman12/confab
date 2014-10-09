@@ -7,18 +7,17 @@ class Event < ActiveRecord::Base
 
   THEME = ["Transportation","Comics","Entertainment and Media","Writing/Books","Business","Hobbies","Arts and Crafts","Technology and Science","Gaming","Other"]
 
-  #adjust to match attended? attend! unattend!
-    # def following?(other_user)
-    #   relationships.find_by(followed_id: other_user.id)
-    # end
+  def attended?(user)
+    attendances.find_by(attendee_id: user.id)
+  end
 
-    # def follow!(other_user)
-    #   relationships.create!(followed_id: other_user.id)
-    # end
+  def attend!(user)
+    attendances.create!(attendee_id: user.id)
+  end
 
-    # def unfollow!(other_user)
-    #   relationships.find_by(followed_id: other_user.id).destroy
-    # end
+  def unattend!(user)
+    attendances.find_by(attendee_id: user.id).destroy
+  end
 
   def self.search(query)
     where("name like ?", "%#{query}%")

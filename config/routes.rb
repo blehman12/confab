@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    member do
+      get :attendees
+    end
+  end
 
   resources :users do
     member do
-      get :following, :followers, :search
+      get :following, :followers, :search, :attendeds
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
@@ -11,6 +15,7 @@ Rails.application.routes.draw do
   resources :wants, only: [:create, :destroy, :index]
   resources :skills, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
+  resources :attendances, only: [:create, :destroy]
 
 
   root 'pages#home'

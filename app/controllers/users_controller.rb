@@ -82,10 +82,10 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
-  def attending
+  def attendeds
     @title = "Attending"
     @event = Event.find(params[:id])
-    @events = @event.attended_events.paginate(page: params[:page])
+    @events = @user.attended_events.paginate(page: params[:page])
     render 'show_attending'
   end
 

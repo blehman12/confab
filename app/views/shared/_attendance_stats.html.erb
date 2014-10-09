@@ -1,0 +1,7 @@
+<div class="stats">
+  <a href="<%= attendees_event_path(@event) %>">
+    <strong id="following" class="stat">
+      <%= "#{@event.attending_users.count} Attendees" %>
+    </strong>
+  </a>
+</div>
