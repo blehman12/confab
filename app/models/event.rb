@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-  has_many :attendances, foreign_key: "attendee_id", dependent: :destroy
+  has_many :attendances, foreign_key: "attended_id", dependent: :destroy
   has_many :attending_users, through: :attendances, source: :attendee
   validates :name, presence: true, length: { maximum: 140 }
   validates :theme, presence: true

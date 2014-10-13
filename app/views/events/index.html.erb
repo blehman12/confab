@@ -1,3 +1,4 @@
+<% provide(:title, 'Events') %>
 <h2>Events</h2>
 <div><%= render 'events/search' %></div>
 
@@ -15,10 +16,10 @@
     <ul class="users">
       <h5 style="display:inline">Sort By:</h5>
       <tr>
-        <th><%= sortable "name", "Name" %></th>
-        <th><%= sortable "start", "Start Date" %></th>
-        <th><%= sortable "theme", "Theme" %></th>
-        <th><%= sortable "category", "Category" %></th>
+        <th><%= sortable "name", "Name" %></th> |
+        <th><%= sortable "start", "Start Date" %></th> |
+        <th><%= sortable "theme", "Theme" %></th> |
+        <th><%= sortable "category", "Category" %></th> |
         <th><%= sortable "tags", "Tags" %></th>
       </tr>
       <%= render @events %>

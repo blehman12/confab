@@ -3,7 +3,8 @@ class AttendancesController < ApplicationController
 
   def create
     @event = Event.find(params[:attendance][:attended_id])
-    current_user.attend!(@event)
+    @user = current_user
+    @user.attend!(@event)
     respond_to do |format|
       format.html { redirect_to @event }
       format.js

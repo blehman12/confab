@@ -1,13 +1,6 @@
 <% provide(:title, @title) %>
 <div class="row">
-  <section>
-    <%= render 'shared/attendance_stats' %>
-    <% if current_user.attending?(@event) %>
-      <%= render 'unattend' %>
-    <% else %>
-      <%= render 'attend' %>
-    <% end %>
-  </section>
+
   <br>
   <div class="span8">
     <h3><%= @title %></h3>

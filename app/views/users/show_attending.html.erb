@@ -20,11 +20,11 @@
     <br>
   <div class="span8">
     <h3><%= @title %></h3>
-    <% if @users.any? %>
+    <% if @events.any? %>
       <ul class="users">
-        <%= render @users %>
+        <%= render @events %>
       </ul>
-      <%= will_paginate @users, container: false %>
+      <%= will_paginate @events, container: false %>
     <% end %>
   </div>
 </div>

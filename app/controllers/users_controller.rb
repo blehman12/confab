@@ -20,8 +20,8 @@ class UsersController < ApplicationController
     @want = current_user.wants.build if signed_in?
     @skills = @user.skills.paginate(page: params[:page])
     @skill = current_user.skills.build if signed_in?
-    @events = @user.events.paginate(page: params[:page])
-    @event = current_user.events.build if signed_in?
+    @events = @user.attended_events.paginate(page: params[:page])
+    @event = current_user.attended_events.build if signed_in?
     if @user == current_user
       @name_for_wants = "You Are"
       @name_none_posted = "You have"
@@ -84,13 +84,14 @@ class UsersController < ApplicationController
 
   def attendeds
     @title = "Attending"
-    @event = Event.find(params[:id])
+
+    @user = User.find(params[:id])
+    # @event = Event.find(params[:id])
     @events = @user.attended_events.paginate(page: params[:page])
     render 'show_attending'
   end
 
   private
-
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)

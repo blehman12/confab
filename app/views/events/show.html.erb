@@ -5,7 +5,15 @@
 </h2>
 
 <section>
-  <%= render 'shared/attendance_stats' %>
+  <% if current_user.attending?(@event) %>
+    <%= render 'unattend' %>
+  <% else %>
+    <%= render 'attend' %>
+  <% end %>
+</section>
+
+<section>
+  <%= render 'events/attendance_stats' %>
 </section>
 
 <p>

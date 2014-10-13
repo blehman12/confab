@@ -1,5 +1,7 @@
 <% provide(:title, 'Users') %>
 <h1>Users</h1>
+<div><%= render 'users/search' %></div>
+
 <div>
 <% form_tag users_path, :method => 'get' do %>
   <p>
@@ -8,9 +10,11 @@
   </p>
 <% end %>
 </div>
+<br>
+<div>
+
 
 <div>
-  <h3>All Users</h3>
   <ul class="users">
     <h5 style="display:inline">Sort By:</h5>
     <tr>

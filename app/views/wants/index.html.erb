@@ -1,5 +1,7 @@
 <% provide(:title, 'User Interests') %>
 <h1>User Interests</h1>
+<div><%= render 'wants/search' %></div>
+
 <div>
 <% form_tag wants_path, :method => 'get' do %>
   <p>

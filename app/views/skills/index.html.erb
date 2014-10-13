@@ -1,5 +1,7 @@
 <% provide(:title, 'User Specialties') %>
 <h1>User Specialties</h1>
+<div><%= render 'skills/search' %></div>
+
 <div>
 <% form_tag skills_path, :method => 'get' do %>
   <p>

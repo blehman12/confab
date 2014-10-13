@@ -2,18 +2,16 @@ class EventsController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
-  helper_method :sort_column, :sort_direction
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column,    :sort_direction
+  before_action :set_event,      only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
     if params[:search]
-      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 30)
-      # .order(sort_column + " " + sort_direction)
+      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
     else
-      @events = Event.paginate(page: params[:page], per_page: 30)
-      # .order(sort_column + " " + sort_direction)
+      @events = Event.paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
     end
     @index = true
     @events.each do |event|
@@ -62,7 +60,6 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
-    @event.id = current_user.attendances.attended_id
 
     respond_to do |format|
       if @event.save

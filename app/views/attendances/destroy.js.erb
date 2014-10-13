@@ -1,2 +1,2 @@
-$("#attend_form").html("<%= escape_javascript(render('event/attend')) %>")
-$("#attendees").html('<%= @event.attendees.count %>')
+$("#attend_form").html("<%= escape_javascript(render('events/attend')) %>")
+$("#attendees").html('<%= @event.attending_users.count %>')

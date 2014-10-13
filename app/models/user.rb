@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :wants, dependent: :destroy
   has_many :skills, dependent: :destroy
   has_many :events
-  has_many :attendances, foreign_key: "attended_id", dependent: :destroy
+  has_many :attendances, foreign_key: "attendee_id", dependent: :destroy
   has_many :attended_events, through: :attendances, source: :attended
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
   def unattend!(event)
     attendances.find_by(attended_id: event.id).destroy
-  end 
+  end
 
   def self.search(query)
     where("name like ?", "%#{query}%")
