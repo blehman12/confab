@@ -40,14 +40,18 @@
 </p>
 
 <p style="width:75%">
-  <strong>About:</strong><br>
-  <%= @event.description %>
+  <% if @event.description %>
+    <strong>About:</strong><br>
+    <%= @event.description %>
+  <% end %>
 </p>
 
 <p>
   <!-- <strong>About:</strong><br> -->
-  <b><%= "#{@event.theme[0].upcase}#{@event.theme[1..-1].downcase}" %></b> |
-  <%= "#{@event.category[0].upcase}#{@event.category[1..-1].downcase}" %>
+  <b><%= "#{@event.theme[0].upcase}#{@event.theme[1..-1].downcase}" %></b>
+  <% if @event.category %>
+    | <%= "#{@event.category[0].upcase}#{@event.category[1..-1].downcase}" %>
+  <% end %>
   <% if @event.subcategoryA %>
    | <%= @event.subcategoryA %>
   <% end %>
