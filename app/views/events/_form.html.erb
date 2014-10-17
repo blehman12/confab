@@ -34,8 +34,8 @@
   <div class="field">
     <%= f.label :address %><br>
     <p><%= f.text_field :address, placeholder: "Street Address", size: "50" %></p>
-    <p><%= f.text_field :address, placeholder: "Address Line 2", size: "50" %></p>
-    <p><%= f.text_field :city, placeholder: "City", size: "25" %>
+    <p><%= f.text_field :address2, placeholder: "Address Line 2", size: "50" %></p>
+    <p><%= f.text_field :city, placeholder: "City", size: "25", required: true %>
     <%= f.collection_select :state, Event::STATE, :to_s, :to_s, required: true, include_blank: true %>
     <%= f.text_field :zipcode, placeholder: "Zip Code", size: "10" %></p>
   </div>

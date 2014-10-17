@@ -4,7 +4,7 @@
   <%= @event.name %>
 </h2>
 
-<section>
+<section class="attendance">
   <% if current_user.attending?(@event) %>
     <%= render 'unattend' %>
   <% else %>
@@ -12,27 +12,26 @@
   <% end %>
 </section>
 
-<section>
+<section class="attendance">
   <%= render 'events/attendance_stats' %>
 </section>
 
 <p>
-  <%= @date_range %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @event.location %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @event.address %>
-</p>
-
-<p>
-  <strong>Recurrence:</strong>
+  <%= @date_range %><br>
   <%= @recurrence %>
+</p>
+
+<p>
+  <% if @event.location? %>
+    <b><%= @event.location %></b><br>
+  <% end %>
+  <% if @event.address? %>
+    <%= @event.address %><br>
+  <% end %>
+  <% if @event.address2? %>
+    <%= @event.address2 %><br>
+  <% end %>
+    <%= "#{@event.city}, #{@event.state} #{@event.zipcode}" %>
 </p>
 
 <p>
@@ -40,19 +39,32 @@
   <%= @event.contact %>
 </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @event.theme %> |
-  <%= @event.category %> -
-  <%= @event.subcategoryA %> -
-  <%= @event.subcategoryB %> -
-  <%= @event.subcategoryC %>
+<p style="width:75%">
+  <strong>About:</strong><br>
+  <%= @event.description %>
 </p>
 
 <p>
-  <strong>Tags:</strong>
-  <%= @event.tags %>
+  <!-- <strong>About:</strong><br> -->
+  <b><%= "#{@event.theme[0].upcase}#{@event.theme[1..-1].downcase}" %></b> |
+  <%= "#{@event.category[0].upcase}#{@event.category[1..-1].downcase}" %>
+  <% if @event.subcategoryA %>
+   | <%= @event.subcategoryA %>
+  <% end %>
+  <% if @event.subcategoryB %>
+   - <%= @event.subcategoryB %>
+   <% end %>
+  <% if @event.subcategoryC %>
+   - <%= @event.subcategoryC %>
+  <% end %>
 </p>
+
+<% if @event.tags? %>
+  <p>
+    <strong>Tags:</strong>
+    <%= @event.tags %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
