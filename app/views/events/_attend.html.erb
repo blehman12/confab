@@ -1,5 +1,5 @@
 <%= form_for(current_user.attendances.build(attended_id: @event.id),
              remote: true) do |f| %>
   <div><%= f.hidden_field :attended_id %></div>
-  <%= f.submit "Attend", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Attend", class: "btn btn-large btn-primary", :onclick => "window.location.reload(true);" %>
 <% end %>
