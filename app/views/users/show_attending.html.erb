@@ -1,5 +1,5 @@
 <% provide(:title, @title) %>
-<div class="row">
+<div class="row, attendance">
     <section>
       <%= gravatar_for @user %>
       <h1><%= @user.name %></h1>
@@ -17,7 +17,6 @@
         <% end %>
       <% end %>
     </section>
-    <br>
   <div class="span8">
     <h3><%= @title %></h3>
     <% if @events.any? %>
@@ -25,6 +24,13 @@
         <%= render @events %>
       </ul>
       <%= will_paginate @events, container: false %>
+    <% else %>
+      <%= "#{@name.split[0]} is not currently attending any events." %>
     <% end %>
   </div>
+</div>
+
+<div>
+  <%= link_to 'Back', @user %> |
+  <%= link_to 'View All Users', users_path %>
 </div>

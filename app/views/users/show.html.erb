@@ -37,15 +37,15 @@ ShowContent(d);
   <%= link_to "delete account", :user, method: :delete,
                                   data: { confirm: "You sure?" } %>
 <% end %>
-<section>
+<section class="attendance">
   <%= render 'shared/stats' %>
 </section>
-<%= render 'follow_form' if signed_in? %>
-
-<section>
+<section class="attendance">
+  <%= render 'follow_form' if signed_in? %>
+</section>
+<section class="attendance">
   <%= render 'shared/user_attendance_stats' %>
 </section>
-<br>
 
 <div>
   <a href="javascript:HideAllShowOne('userevents')"><%= "#{@name_possessive}" %> Events</a> |
@@ -65,7 +65,6 @@ ShowContent(d);
       <% else %>
         <p><%= @name_none_posted %> not posted events.</p>
       <% end %>
-    <%= link_to "create new event", new_event_path %>
     </div>
   </div>
 

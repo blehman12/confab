@@ -83,9 +83,13 @@ class UsersController < ApplicationController
   end
 
   def attendeds
-    @title = "Attending"
-
     @user = User.find(params[:id])
+    @name = "#{@user.name[0].upcase}#{@user.name[1..-1]}"
+    if @user == current_user
+      @title = "Events You Are Attending"
+    else
+      @title = "Events #{@name.split[0]} Is Attending"
+    end
     # @event = Event.find(params[:id])
     @events = @user.attended_events.paginate(page: params[:page])
     render 'show_attending'
