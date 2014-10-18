@@ -1,5 +1,5 @@
 <li class="users">
-  <span class="event"><%= link_to event.name.upcase, event %></span> -
+  <span class="event"><%= link_to "#{event.name[0].upcase}#{event.name[1..-1]}", event %></span> -
   <span class="priority"><%= @date_range %></span> -
   <span class="priority"><%= event.location %></span> -
   <span class="priority"><%= event.address %></span><br>

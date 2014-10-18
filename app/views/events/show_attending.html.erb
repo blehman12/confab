@@ -1,9 +1,16 @@
-<% provide(:title, @title) %>
-<div class="row">
-
-  <br>
+<% provide(:title, "#{@event.name[0].upcase}#{@event.name[1..-1]} Attendees") %>
+<div class="row, attendance">
   <div class="span8">
-    <h3><%= @title %></h3>
+    <h3><%= "#{@event.name[0].upcase}#{@event.name[1..-1]} Attendees" %></h3>
+
+  <section class="attendance">
+    <% if current_user.attending?(@event) %>
+      <%= render 'unattend' %>
+    <% else %>
+      <%= render 'attend' %>
+    <% end %>
+  </section>
+
     <% if @attendees.any? %>
       <ul class="users">
         <%= render @attendees %>
@@ -11,4 +18,9 @@
       <%= will_paginate @attendees, container: false %>
     <% end %>
   </div>
+</div>
+
+<div>
+  <%= link_to 'Back', @event %> |
+  <%= link_to 'View All Events', events_path %>
 </div>

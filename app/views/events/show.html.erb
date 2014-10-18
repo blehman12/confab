@@ -1,7 +1,8 @@
+<% provide(:title, "#{@event.name[0].upcase}#{@event.name[1..-1]}") %>
 <p id="notice"><%= notice %></p>
 
 <h2>
-  <%= @event.name %>
+  <%= "#{@event.name[0].upcase}#{@event.name[1..-1]}" %>
 </h2>
 
 <section class="attendance">
@@ -48,9 +49,9 @@
 
 <p>
   <!-- <strong>About:</strong><br> -->
-  <b><%= "#{@event.theme[0].upcase}#{@event.theme[1..-1].downcase}" %></b>
+  <b><%= "#{@event.theme[0].upcase}#{@event.theme[1..-1]}" %></b>
   <% if @event.category %>
-    | <%= "#{@event.category[0].upcase}#{@event.category[1..-1].downcase}" %>
+    | <%= "#{@event.category[0].upcase}#{@event.category[1..-1]}" %>
   <% end %>
   <% if @event.subcategoryA %>
    | <%= @event.subcategoryA %>
@@ -70,5 +71,7 @@
   </p>
 <% end %>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<% if @event.user_id == current_user.id %>
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+<% end %>
+<%= link_to 'View All Events', events_path %>

@@ -1,6 +1,7 @@
-<h1>Editing event</h1>
+<% provide(:title, "Edit #{@event.name[0].upcase}#{@event.name[1..-1]}") %>
+<h1>Edit <%= "#{@event.name[0].upcase}#{@event.name[1..-1]}" %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Cancel', @event %> |
+<%= link_to 'View All Events', events_path %>
