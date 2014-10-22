@@ -43,10 +43,25 @@ ShowContent(d);
 <% if signed_in? %>
 <% @user ||= current_user %>
 
+<div class="box">
+    <h3><%= "Your Upcoming Events" %></h3>
+    <div class="users">
+      <% if current_user.events.any? %>
+        <ol>
+          <%= render @events %>
+        </ol>
+        <span class="pagination"><%= will_paginate @events, container: false %></span>
+      <% else %>
+        <p>You do not have any events coming up.</p>
+      <% end %>
+      <p><%= link_to 'New Event', new_event_path %></span>
+    </div>
+</div>
+
   <div class="sidebar">
     <aside class="span4">
-      <a href="javascript:ReverseDisplay('wantform')">Add a New Interest</a> |
-      <a href="javascript:ReverseDisplay('skillform')">Add a New Specialty</a>
+      <a href="javascript:HideAllShowOne('wantform')">Add a New Interest</a> |
+      <a href="javascript:HideAllShowOne('skillform')">Add a New Specialty</a>
       <section id="wantform" style="display:none">
         <%= render 'shared/want_form' %>
       </section>
@@ -58,11 +73,16 @@ ShowContent(d);
 
   <aside class="span4">
     <section>
-      <%= render 'shared/wantlist' %>
+      <% if current_user.wants.any? %>
+        <h4>Your Interests</h4>
+        <%= render 'shared/wantlist' %>
+      <% end %>
     </section>
-    <br>
     <section>
-      <%= render 'shared/skilllist' %>
+      <% if current_user.skills.any? %>
+        <h4>Your Specialties</h4>
+        <%= render 'shared/skilllist' %>
+      <% end %>
     </section>
   </aside>
 <% else %>

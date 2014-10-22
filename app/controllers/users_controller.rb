@@ -6,21 +6,21 @@ class UsersController < ApplicationController
 
   def index
     if params[:search]
-      @users = User.search(params[:search]).paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
+      @users = User.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     else
-      @users = User.paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
+      @users = User.paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     end
   end
 
   def show
     @user = User.find(params[:id])
-    @communications = @user.communications.paginate(page: params[:page])
+    @communications = @user.communications.paginate(page: params[:page], per_page: 10)
     @communication = current_user.communications.build if signed_in?
-    @wants = @user.wants.paginate(page: params[:page])
+    @wants = @user.wants.paginate(page: params[:page], per_page: 10)
     @want = current_user.wants.build if signed_in?
-    @skills = @user.skills.paginate(page: params[:page])
+    @skills = @user.skills.paginate(page: params[:page, per_page: 10])
     @skill = current_user.skills.build if signed_in?
-    @events = @user.attended_events.paginate(page: params[:page])
+    @events = @user.attended_events.paginate(page: params[:page], per_page: 10)
     @event = current_user.attended_events.build if signed_in?
     if @user == current_user
       @name_for_wants = "You Are"
@@ -71,14 +71,14 @@ class UsersController < ApplicationController
   def following
     @title = "Following"
     @user = User.find(params[:id])
-    @users = @user.followed_users.paginate(page: params[:page])
+    @users = @user.followed_users.paginate(page: params[:page], per_page: 25)
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
-    @users = @user.followers.paginate(page: params[:page])
+    @users = @user.followers.paginate(page: params[:page], per_page: 25)
     render 'show_follow'
   end
 
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
       @title = "Events #{@name.split[0]} Is Attending"
     end
     # @event = Event.find(params[:id])
-    @events = @user.attended_events.paginate(page: params[:page])
+    @events = @user.attended_events.paginate(page: params[:page], per_page: 25)
     render 'show_attending'
   end
 

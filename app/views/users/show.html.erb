@@ -61,21 +61,23 @@ ShowContent(d);
         <ol>
           <%= render @events %>
         </ol>
-        <%= will_paginate @events, container: false %>
+        <span class="pagination"><%= will_paginate @events, container: false %></span>
       <% else %>
         <p><%= @name_none_posted %> not posted events.</p>
       <% end %>
+      <span><%= link_to 'New Event', new_event_path %></span>
+      <span><%= link_to 'Find Events', events_path %></span>
     </div>
   </div>
 
-  <div id="userwants" style="display:none;">
+  <div id="userwants" class="box" style="display:none;">
     <h3><%= "#{@name_possessive} Interests" %> (<%= @user.wants.count %>)</h3>
     <div>
       <% if @user.wants.any? %>
         <ol>
           <%= render @wants %>
         </ol>
-        <%= will_paginate @wants, container: false %>
+        <span class="pagination"><%= will_paginate @wants, container: false %></span>
       <% else %>
         <p><%= @name_none_posted %> not posted any topics of interest.</p>
       <% end %>
@@ -94,7 +96,7 @@ ShowContent(d);
         <ol>
           <%= render @skills %>
         </ol>
-        <%= will_paginate @skills, container: false %>
+        <span class="pagination"><%= will_paginate @skills, container: false %></span>
       <% else %>
         <p><%= @name_none_posted %> not posted any specialties.</p>
       <% end %>
@@ -113,7 +115,7 @@ ShowContent(d);
         <ol class="communications">
           <%= render @communications %>
         </ol>
-        <%= will_paginate @communications, container: false %>
+        <span class="pagination"><%= will_paginate @communications, container: false %></span>
       <% else %>
           <p><%= @name_none_posted %> not posted any preferred methods of communication.</p>
       <% end %>

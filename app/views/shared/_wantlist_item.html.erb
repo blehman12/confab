@@ -1,8 +1,10 @@
 <li id="<%= wantlist_item.id %>">
+  <% unless @user == current_user %>
   <%= link_to gravatar_for(wantlist_item.user), wantlist_item.user %>
   <span class="user">
     <%= link_to wantlist_item.user.name, wantlist_item.user %>
   </span>
+  <% end %>
   <span class="want"><%= wantlist_item.wanted %></span>
   <span class="priority"><%= wantlist_item.priority %></span>
   <span class="tag"><%= wantlist_item.tag %></span>

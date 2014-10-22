@@ -15,7 +15,7 @@
       <ul class="users">
         <%= render @attendees %>
       </ul>
-      <%= will_paginate @attendees, container: false %>
+      <span class="pagination"><%= will_paginate @attendees, container: false %></span>
     <% end %>
   </div>
 </div>

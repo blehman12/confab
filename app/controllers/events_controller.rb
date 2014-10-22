@@ -9,9 +9,9 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if params[:search]
-      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
+      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     else
-      @events = Event.paginate(page: params[:page], per_page: 30).order(sort_column + " " + sort_direction)
+      @events = Event.paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     end
     @index = true
     @events.each do |event|
