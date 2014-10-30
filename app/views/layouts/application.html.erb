@@ -58,14 +58,14 @@
       <h1><%= link_to "Confab", root_path %></h1>
     </div>
   </div>
+  <span class="page-nav">
+    <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Other Users", users_path %> | <%= link_to "Browse Other Users' Interests", wants_path %> | <%= link_to "Browse Other Users' Specialties", skills_path %></h4>
+  </span>
   <div class="content">
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
 
-    <section>
-      <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Other Users", users_path %> | <%= link_to "Browse Other Users' Interests", wants_path %> | <%= link_to "Browse Other Users' Specialties", skills_path %></h4>
-    </section>
 
     <div>
       <%= yield %>

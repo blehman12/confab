@@ -1,6 +1,10 @@
 <% provide(:title, "Add an Event") %>
 <h1>New Event</h1>
 
-<%= render 'form' %>
+<div class='content'>
+  <%= render 'form' %>
+</div>
 
-<%= link_to 'Back', events_path %>
+<span class="bottom-nav">
+  <%= link_to 'Back', events_path %>
+</span>

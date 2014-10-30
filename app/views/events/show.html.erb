@@ -1,9 +1,13 @@
 <% provide(:title, "#{@event.name[0].upcase}#{@event.name[1..-1]}") %>
 <p id="notice"><%= notice %></p>
 
-<h2>
+<h2 style="margin-left:-0.5em">
   <%= "#{@event.name[0].upcase}#{@event.name[1..-1]}" %>
 </h2>
+
+<div class='image_container'>
+  <%= image_tag @event.image.url(:medium), class: 'img-rounded', id:"image" %>
+</div>
 
 <section class="attendance">
   <% if current_user.attending?(@event) %>

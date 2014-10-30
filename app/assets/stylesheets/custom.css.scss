@@ -4,6 +4,24 @@
   margin-left: auto;
 }
 
+.content {
+  display: block;
+  clear: both;
+  width: 90%;
+  margin: 0.5em auto 0.5em auto;
+}
+
+.page-nav {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav {
+  display: inline-block;
+  float: right;
+}
+
 h1 a:hover {
   background-color: #ffffff;
   text-decoration: none;
@@ -32,6 +50,9 @@ h5 a:hover {
 h6 a:hover {
   background-color: #ffffff;
   text-decoration: none;
+}
+.header {
+  padding: 10px;
 }
 
 footer {
@@ -63,23 +84,9 @@ td {
   list-style-type: none;
 }
 
-.header {
-  padding: 10px;
-}
-
-.nav {
-  display: inline-block;
-  float: right;
-}
-
 #search {
   display: inline-block;
   float: left;
-}
-
-.content {
-  display: block;
-  clear: both;
 }
 
 .indexes {

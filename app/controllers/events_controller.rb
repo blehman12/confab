@@ -87,14 +87,26 @@ class EventsController < ApplicationController
     end
   end
 
+  # image/paperclip code borrowed from Kate & Jin
+    def upload
+      uploaded_io = params[:items][:image]
+      File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+    end
+
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
     @event.destroy
+    @item.image.destroy # remove image from s3
+    @item.image.clear # queues attachment to be deleted
     respond_to do |format|
       format.html { redirect_to events_url }
       format.json { head :no_content }
     end
+    flash[:success] = "Event deleted."
+    redirect_to events_url
   end
 
   def attendees
@@ -112,7 +124,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme, :category, :subcategoryA, :subcategoryB, :subcategoryC, :address2, :city, :state, :zipcode, :description, :tags)
+      params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme, :category, :subcategoryA, :subcategoryB, :subcategoryC, :address2, :city, :state, :zipcode, :description, :tags, :image)
     end
 
     def signed_in_user

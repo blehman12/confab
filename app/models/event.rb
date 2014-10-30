@@ -4,7 +4,14 @@ class Event < ActiveRecord::Base
   has_many :attending_users, through: :attendances, source: :attendee
   validates :name, presence: true, length: { maximum: 140 }
   validates :theme, presence: true
-
+  # attachment borrowed from Kate & Jin
+  missing_url = 'duck.jpg'
+  has_attached_file :image, 
+                    styles: { medium: ["300x300>", :png], thumb: ["100x100", :png] }, 
+                    default_url: missing_url
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :image, :in => 0.megabytes..2.megabytes
+ 
   default_scope -> { order('start ASC') }
 
   THEME = ["Transportation","Comics","Entertainment and Media","Writing/Books","Business","Hobbies","Arts and Crafts","Technology and Science","Gaming","Other"]

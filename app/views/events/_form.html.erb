@@ -11,82 +11,129 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class='image_container'>
+    <div>
+      <%= image_tag @event.image.url(:medium), class: 'img-rounded', id:"image" %>
+    </div>
+    <div style="width:300px"><b>Add your own image</b><%= f.file_field :image, id:"upload_image" %></div>
   </div>
-  <div class="field">
-    <%= f.label :start, "Start Date" %><br>
-    <%= f.date_select :start %>
-  </div>
-  <div class="field">
-    <%= f.label :stop, "Stop Date"  %><br>
-    <%= f.date_select :stop %>
-  </div>
-  <div class="field">
-    <%= f.label :description  %><br>
-    <%= f.text_area :description, placeholder: "Please describe your event.", size: "60" %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location, placeholder: "e.g. Portland Convention Center" %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <p><%= f.text_field :address, placeholder: "Street Address", size: "50" %></p>
-    <p><%= f.text_field :address2, placeholder: "Address Line 2", size: "50" %></p>
-    <p><%= f.text_field :city, placeholder: "City", size: "25", required: true %>
-    <%= f.collection_select :state, Event::STATE, :to_s, :to_s, required: true, include_blank: true %>
-    <%= f.text_field :zipcode, placeholder: "Zip Code", size: "10" %></p>
-  </div>
-  <div class="field">
-    <%= f.label :contact, "Please enter the primary contact information or this event:" %><br>
-    <%= f.text_field :contact, placeholder: "e.g. info@event.com", size: "25" %>
-  </div>
+  <div class="form">
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :start, "Start Date" %><br>
+      <%= f.date_select :start %>
+    </div>
+    <div class="field">
+      <%= f.label :stop, "Stop Date"  %><br>
+      <%= f.date_select :stop %>
+    </div>
+    <div class="field">
+      <%= f.label :description  %><br>
+      <%= f.text_area :description, placeholder: "Please describe your event.", size: "60" %>
+    </div>
+    <div class="field">
+      <%= f.label :location %><br>
+      <%= f.text_field :location, placeholder: "e.g. Portland Convention Center" %>
+    </div>
+    <div class="field">
+      <%= f.label :address %><br>
+      <p><%= f.text_field :address, placeholder: "Street Address", size: "50" %></p>
+      <p><%= f.text_field :address2, placeholder: "Address Line 2", size: "50" %></p>
+      <p><%= f.text_field :city, placeholder: "City", size: "25", required: true %>
+      <%= f.collection_select :state, Event::STATE, :to_s, :to_s, required: true, include_blank: true %>
+      <%= f.text_field :zipcode, placeholder: "Zip Code", size: "10" %></p>
+    </div>
+    <div class="field">
+      <%= f.label :contact, "Please enter the primary contact information or this event:" %><br>
+      <%= f.text_field :contact, placeholder: "e.g. info@event.com", size: "25" %>
+    </div>
 
-  <div class="field">
-    <%= f.radio_button :recurrence, 0, checked: true %>
-    <%= label :recurrence, "One time event" %><br>
+    <div class="field">
+      <%= f.radio_button :recurrence, 0, checked: true %>
+      <%= label :recurrence, "One time event" %><br>
 
-    <%= f.radio_button :recurrence, 1 %>
-    <%= label :recurrence, "Annual"%><br>
+      <%= f.radio_button :recurrence, 1 %>
+      <%= label :recurrence, "Annual"%><br>
 
-    <%= f.radio_button :recurrence, 2 %>
-    <%= label :recurrence, "Monthly" %><br>
+      <%= f.radio_button :recurrence, 2 %>
+      <%= label :recurrence, "Monthly" %><br>
 
-    <%= f.radio_button :recurrence, 3 %>
-    <%= label :recurrence, "Weekly"%>
-  </div>
+      <%= f.radio_button :recurrence, 3 %>
+      <%= label :recurrence, "Weekly"%>
+    </div>
 
-  <div class="field">
-    <%= f.collection_select :theme, Event::THEME, :to_s, :to_s, required: true, prompt: 'Select a Primary Theme for Your Event' %>
-  </div>
+    <div class="field">
+      <%= f.collection_select :theme, Event::THEME, :to_s, :to_s, required: true, prompt: 'Select a Primary Theme for Your Event' %>
+    </div>
 
-  <div class="field">
-    <%= f.label :category, "Category" %><br>
-    <%= f.text_field :category, placeholder: "e.g. Cars, Computers, etc.", size: "25" %>
-  </div>
+    <div class="field">
+      <%= f.label :category, "Category" %><br>
+      <%= f.text_field :category, placeholder: "e.g. Cars, Computers, etc.", size: "25" %>
+    </div>
 
-  <%= f.label :subcategoryA, "Additional information or subcategories:" %><small> (optional)</small><br><br>
+    <%= f.label :subcategoryA, "Additional information or subcategories:" %><small> (optional)</small><br><br>
 
-  <div class="indent-2em field">
-    <p>
-      <%= f.text_field :subcategoryA, size: "25" %>
-    </p>
-    <p>
-      <%= f.text_field :subcategoryB, size: "25" %>
-    </p>
-    <p>
-      <%= f.text_field :subcategoryC, size: "25" %>
-    </p>
-  </div>
+    <div class="indent-2em field">
+      <p>
+        <%= f.text_field :subcategoryA, size: "25" %>
+      </p>
+      <p>
+        <%= f.text_field :subcategoryB, size: "25" %>
+      </p>
+      <p>
+        <%= f.text_field :subcategoryC, size: "25" %>
+      </p>
+    </div>
 
-  <div class="field">
-    <%= f.label :tags, "Add tags for your event:" %><small> (optional)</small><br>
-    #<%= f.text_field :tags, placeholder: "e.g. classic cars, rubyonrails, etc.", size: "30" %>
-  </div>
+    <div class="field">
+      <%= f.label :tags, "Add tags for your event:" %><small> (optional)</small><br>
+      #<%= f.text_field :tags, placeholder: "e.g. classic cars, rubyonrails, etc.", size: "30" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>
+
+<script>
+// This handles changing the image when a user uploads a new one
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+      f=files[0]
+      // Only process image files.
+      if (f.type.match('image.*')) {
+      var reader = new FileReader();
+      reader.onload = (function(theFile) {
+        return function(e) {
+          document.getElementById("image").src=e.target.result;
+        };
+      })(f);
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+      }
+    }
+  document.getElementById('upload_image').addEventListener('change', handleFileSelect, false);
+
+  // for edit pages, when user image not there, replace missing with stock image
+  function onEditGetCategoryImage() {
+    var url = document.URL;
+    var temp = url.split('/');
+    var page_name = temp[(temp.length - 1)];
+    if (page_name == 'edit') {
+      img_src = document.getElementById('image').src;
+      temp = img_src.split('/');
+      initial_src = temp[(temp.length - 1)];
+      match_src = 'missing.png'
+      if (initial_src == match_src) { handleCategorySelect(); }
+    };
+  };
+  // on page load...
+  $(document).ready( function () { 
+    hideRemoveButton();
+    onEditGetCategoryImage();
+  });   
+</script>

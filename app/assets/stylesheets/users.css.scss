@@ -10,12 +10,11 @@
     border-top: 1px solid #e8e8e8;
   }
 }
-.content {
-  display: block;
-}
+
 .timestamp {
   color: lightgray;
 }
+
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -82,4 +81,31 @@ aside {
 }
 .pagination span.disabled {
   padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #eee; color: #ddd;
+}
+
+.image_container {
+  display: inline-block;
+  float: right;
+  padding: 10px;
+  text-align: left;
+  max-width: 30%;
+}
+
+.form {
+  text-align: left;
+  margin: 5px;
+  display: inline-block;
+  float: left;
+  max-width: 45%;
+}
+
+.bottom-nav {
+  display: block;
+  clear: both;
+}
+
+.img-rounded {
+  max-width: 300px;
+  margin: 10px;
+  display: inline-block;
 }
