@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @communication = current_user.communications.build if signed_in?
     @wants = @user.wants.paginate(page: params[:page], per_page: 10)
     @want = current_user.wants.build if signed_in?
-    @skills = @user.skills.paginate(page: params[:page, per_page: 10])
+    @skills = @user.skills.paginate(page: params[:page], per_page: 10)
     @skill = current_user.skills.build if signed_in?
     @events = @user.attended_events.paginate(page: params[:page], per_page: 10)
     @event = current_user.attended_events.build if signed_in?
