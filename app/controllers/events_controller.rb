@@ -8,14 +8,23 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if params[:search]
-      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
-    # elsif params[:filter]
-    #   @filter = Event.new(params[:filter])
-    #   @events = @filter.get_scope.paginate(page: params[:page])
-    else
-      @events = Event.paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
+    @filterrific = Filterrific.new(Event, params[:filterrific])
+    @filterrific.select_options = { sorted_by: Event.options_for_sorted_by }
+    @events = Event.filterrific_find(@filterrific).page(params[:page])
+    session[:filterrific_students] = @filterrific.to_hash
+    respond_to do |format|
+      format.html
+      format.js
     end
+
+    # if params[:search]
+    #   @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
+    # # elsif params[:filter]
+    # #   @filter = Event.new(params[:filter])
+    # #   @events = @filter.get_scope.paginate(page: params[:page])
+    # else
+    #   @events = Event.paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
+    # end
     @index = true
     @events.each do |event|
       if event.stop == event.start
@@ -25,6 +34,19 @@ class EventsController < ApplicationController
         ")} – #{event.stop.strftime("%b %d, %Y")}"
       end
     end
+  end
+
+  rescue ActiveRecord::RecordNotFound => e
+    # There is an issue with the persisted param_set. Reset it.
+    puts "Had to reset filterrific params: #{ e.message }"
+    redirect_to(action: :reset_filterrific, format: :html) and return
+  end
+
+  def reset_filterrific
+    # Clear session persistence
+    session[:filterrific_students] = nil
+    # Redirect back to the index action for default filter settings.
+    redirect_to action: :index
   end
 
   # GET /events/1
@@ -91,12 +113,12 @@ class EventsController < ApplicationController
   end
 
   # image/paperclip code borrowed from Kate & Jin
-    def upload
-      uploaded_io = params[:items][:image]
-      File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-        file.write(uploaded_io.read)
-      end
+  def upload
+    uploaded_io = params[:items][:image]
+    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
+      file.write(uploaded_io.read)
     end
+  end
 
   # DELETE /events/1
   # DELETE /events/1.json
@@ -146,4 +168,3 @@ class EventsController < ApplicationController
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
-end

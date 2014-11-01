@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :events do
     member do
       get :attendees
+      get :reset_filterrific
     end
   end
 
