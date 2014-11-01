@@ -8,13 +8,13 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @filterrific = Filterrific.new(Event, params[:filterrific])
-    @filterrific.select_options = { sorted_by: Event.options_for_sorted_by }
-    @events = Event.filterrific_find(@filterrific).page(params[:page])
-    session[:filterrific_students] = @filterrific.to_hash
-    respond_to do |format|
-      format.html
-      format.js
+    if params[:search]
+      @events = Event.search(params[:search], conditions: ['start >= ?', Date.today]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
+    # elsif params[:filter]
+    #   @filter = Event.new(params[:filter])
+    #   @events = @filter.get_scope.paginate(page: params[:page])
+    else
+      @events = Event.paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     end
 
     # if params[:search]
