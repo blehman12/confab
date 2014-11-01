@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if params[:search]
-      @events = Event.search(params[:search], conditions: ['start >= ?', Date.today]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
+      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     # elsif params[:filter]
     #   @filter = Event.new(params[:filter])
     #   @events = @filter.get_scope.paginate(page: params[:page])
