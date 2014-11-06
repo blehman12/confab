@@ -47,6 +47,16 @@ ShowContent(d);
   <%= render 'shared/user_attendance_stats' %>
 </section>
 
+<div class="col-md-8">
+  <% if @user.posts.any? %>
+    <h3>Posts (<%= @user.posts.count %>)</h3>
+    <ol class="posts">
+      <%= render @posts %>
+    </ol>
+    <%= will_paginate @posts %>
+  <% end %>
+</div>
+
 <div>
   <a href="javascript:HideAllShowOne('userevents')"><%= "#{@name_possessive}" %> Events</a> |
   <a href="javascript:HideAllShowOne('userwants')"><%= "#{@name_possessive}" %> Interests</a> |

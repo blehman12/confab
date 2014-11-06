@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :attendances, only: [:create, :destroy]
   resources :messages
   resources :conversations
-
+  resources :posts, only: [:create, :destroy]
 
   root 'pages#home'
 

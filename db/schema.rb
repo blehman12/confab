@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105003629) do
+ActiveRecord::Schema.define(version: 20141106205051) do
 
   create_table "attendances", force: true do |t|
     t.integer  "attendee_id"
@@ -118,6 +118,21 @@ ActiveRecord::Schema.define(version: 20141105003629) do
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id"
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type"
 
+  create_table "messageables", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
   create_table "relationships", force: true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -137,6 +152,7 @@ ActiveRecord::Schema.define(version: 20141105003629) do
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "theme"
   end
 
   add_index "skills", ["user_id", "created_at"], name: "index_skills_on_user_id_and_created_at"
@@ -162,6 +178,7 @@ ActiveRecord::Schema.define(version: 20141105003629) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "priority"
+    t.string   "theme"
   end
 
   add_index "wants", ["user_id", "created_at"], name: "index_wants_on_user_id_and_created_at"
