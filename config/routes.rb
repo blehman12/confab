@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :events do
     member do
       get :attendees
-      get :reset_filterrific
+      # get :reset_filterrific
     end
   end
 
@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :skills, only: [:create, :destroy, :index]
   resources :relationships, only: [:create, :destroy]
   resources :attendances, only: [:create, :destroy]
+  resources :messages
+  resources :conversations
 
 
   root 'pages#home'

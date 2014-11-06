@@ -1,19 +1,13 @@
 <li class="users">
-  <span class="event"><%= link_to "#{event.name[0].upcase}#{event.name[1..-1]}", event %></span> -
-  <span class="priority"><%= @date_range %></span> -
-  <span class="priority"><%= event.location %></span> -
-  <span class="priority"><%= event.address %></span><br>
-  <span class="category" style="padding-left:2em"><%= event.theme.upcase %></span> |
-  <span class="category"><%= "#{event.category} -" unless event.category.blank? %></span>
-  <span class="category"><%= "#{event.subcategoryA} -" unless event.category.blank? %></span>
-  <span class="category"><%= "#{event.subcategoryB} -" unless event.category.blank? %></span>
-  <span class="category"><%= "#{event.subcategoryC}" unless event.category.blank? %></span>
-  <span class="timestamp">
-    Shared <%= time_ago_in_words(event.created_at) %> ago.
-  </span>
+  <span class="event"><%= link_to "#{event.name[0].upcase}#{event.name[1..-1]}", event %></span>
+  <span class="event_index"><%= event.start %></span>
+  <span class="event_index"><%= event.location %></span>
+  <span class="event_index"><%= event.theme %></span>
+  <span class="event_index"><%= event.category unless event.category.blank? %></span>
+  <span class="event_index"><%= event.tags unless event.tags.blank? %></span>
   <% if current_user.admin? || current_user?(event.user) %>
-    <td><%= link_to "edit", edit_event_path(event) %> |
+    <span><small><%= link_to "edit", edit_event_path(event) %> |
     <%= link_to "delete", event, method: :delete,
-                            data: { confirm: "You sure?" } %></td>
+                            data: { confirm: "You sure?" } %></small></span>
   <% end %>
 </li>
