@@ -2,8 +2,8 @@
   <span class="event"><%= link_to "#{event.name[0].upcase}#{event.name[1..-1]}", event %></span>
   <span class="event_index"><%= event.start %></span>
   <span class="event_index"><%= event.location %></span>
-  <span class="event_index"><%= event.theme %></span>
-  <span class="event_index"><%= event.category unless event.category.blank? %></span>
+  <span class="event_index"><%= @theme unless @theme.blank? %></span>
+  <span class="event_index"><%= @category unless @category.blank? %></span>
   <span class="event_index"><%= event.tags unless event.tags.blank? %></span>
   <% if current_user.admin? || current_user?(event.user) %>
     <span><small><%= link_to "edit", edit_event_path(event) %> |

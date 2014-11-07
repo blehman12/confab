@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :user
+  belongs_to :theme
+  belongs_to :category
   has_many :attendances, foreign_key: "attended_id", dependent: :destroy
   has_many :attending_users, through: :attendances, source: :attendee
   validates :name, presence: true, length: { maximum: 140 }
@@ -33,4 +35,16 @@ class Event < ActiveRecord::Base
   def self.search(query)
     where("name like ?", "%#{query}%")
   end
+
+  # def self.recurring(recurrence)
+  #   if recurrence == 3
+  #     puts "Weekly event"
+  #   elsif recurrence == 2
+  #     puts "Monthly event"
+  #   elsif recurrence == 1
+  #     puts "Annual event"
+  #   else 
+  #     puts "One time event"
+  #   end
+  # end
 end

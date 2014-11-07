@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  acts_as_messageable
+  # acts_as_messageable
   has_many :communications, dependent: :destroy
   has_many :wants, dependent: :destroy
   has_many :skills, dependent: :destroy

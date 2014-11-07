@@ -1,0 +1,8 @@
+<div class="field">
+  <%= f.label :theme %><br />
+  <%= f.text_field :theme %>
+</div>
+<div class="field">
+  <%= f.label :theme %><br />
+  <%= f.collection_select :theme_id, @themes, :id, :theme %>
+</div>

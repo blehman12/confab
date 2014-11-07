@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :categories
+
+  resources :themes
+
   resources :events do
     member do
       get :attendees
@@ -20,6 +24,8 @@ Rails.application.routes.draw do
   resources :messages
   resources :conversations
   resources :posts, only: [:create, :destroy]
+  resources :themes
+  resources :categories
 
   root 'pages#home'
 

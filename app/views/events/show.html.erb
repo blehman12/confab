@@ -52,17 +52,19 @@
 
 <p>
   <!-- <strong>About:</strong><br> -->
-  <b><%= "#{@event.theme[0].upcase}#{@event.theme[1..-1]}" %></b>
-  <% if @event.category %>
-    | <%= "#{@event.category[0].upcase}#{@event.category[1..-1]}" %>
+  <% if @theme? %>
+    <b><%= @theme %></b>
   <% end %>
-  <% if @event.subcategoryA %>
+  <% if @event.category.category? %>
+    | <%= @event.category.category %>
+  <% end %>
+  <% if @event.subcategoryA? %>
    | <%= @event.subcategoryA %>
   <% end %>
-  <% if @event.subcategoryB %>
+  <% if @event.subcategoryB? %>
    - <%= @event.subcategoryB %>
    <% end %>
-  <% if @event.subcategoryC %>
+  <% if @event.subcategoryC? %>
    - <%= @event.subcategoryC %>
   <% end %>
 </p>
@@ -74,7 +76,7 @@
   </p>
 <% end %>
 
-<% if @event.user_id == current_user.id %>
+<% if (@event.user_id == current_user.id) || current_user.admin? %>
   <%= link_to 'Edit', edit_event_path(@event) %> |
 <% end %>
 <%= link_to 'View All Events', events_path %>

@@ -66,13 +66,13 @@
     </div>
 
     <div class="field">
-      <%= f.collection_select :theme, Event::THEME, :to_s, :to_s, required: true, prompt: 'Select a Primary Theme for Your Event' %>
-    </div>
+        <%= f.collection_select :theme_id, Theme.order(:theme), :id, :theme, prompt: "--  Select Theme --" %>
+      </div>
+      <div class="field">
+        <%= f.grouped_collection_select :category_id, Theme.order(:theme), :categories, :theme, :id, :category, prompt: "-- Select Category --"  %>
+      </div>
 
-    <div class="field">
-      <%= f.label :category, "Category" %><br>
-      <%= f.text_field :category, placeholder: "e.g. Cars, Computers, etc.", size: "25" %>
-    </div>
+
 
     <%= f.label :subcategoryA, "Additional information or subcategories:" %><small> (optional)</small><br><br>
 

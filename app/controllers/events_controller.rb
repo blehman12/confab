@@ -8,34 +8,24 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    if params[:search]
-      @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
-    else
-      @events = Event.paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
-    end
+    @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
     @index = true
-    @events.each do |event|
-      if event.stop == event.start
-        @date_range = event.start.strftime("%b %d, %Y")
-      else
-        @date_range = "#{event.start.strftime("%b %d
-        ")} – #{event.stop.strftime("%b %d, %Y")}"
-      end
-    end
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    if @event.recurrence == 0
-      @recurrence = "One time event"
-    elsif @event.recurrence == 1
-      @recurrence = "Annual event"
+    @theme = Event.theme.theme
+    @category = Event.category.category
+    if @event.recurrence == 3
+      @recurrence = "Weekly event"
     elsif @event.recurrence == 2
       @recurrence = "Monthly event"
-    else @event.recurrence == 3
-      @recurrence = "Weekly event"
+    elsif @event.recurrence == 1
+      @recurrence = "Annual event"
+    else 
+      @recurrence = "One time event"
     end
     if @event.stop == @event.start
       @date_range = @event.start.strftime("%B %d, %Y")
@@ -48,11 +38,15 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @themes = Theme.all
+    @categories = Category.all
   end
 
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @themes = Theme.all
+    @categories = Category.all
   end
 
   # POST /events
@@ -124,7 +118,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme, :category, :subcategoryA, :subcategoryB, :subcategoryC, :address2, :city, :state, :zipcode, :description, :tags, :image)
+      params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme_id, :category_id, :subcategoryA, :subcategoryB, :subcategoryC, :address2, :city, :state, :zipcode, :description, :tags, :image)
     end
 
     def signed_in_user
