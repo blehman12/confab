@@ -74,9 +74,11 @@
     <footer>
       <%= link_to "Home", root_path %> | 
       <%= link_to "Help", help_path %>
-      <% if current_user.admin? %>
-        | <%= link_to "Manage Themes", themes_path %>
-        | <%= link_to "Manage Categories", categories_path %>
+      <% if signed_in? %>
+        <% if current_user.admin? %>
+          | <%= link_to "Manage Themes", themes_path %>
+          | <%= link_to "Manage Categories", categories_path %>
+        <% end %>
       <% end %>
     </footer>
   <%= debug(params) if Rails.env.development? %>
