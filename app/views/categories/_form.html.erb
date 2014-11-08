@@ -11,15 +11,15 @@
     </div>
   <% end %>
 
+<div class="field">
+    <%= f.label :theme_id %><br>
+    <%= f.collection_select :theme_id, Theme.order(:theme), :id, :theme, required: true, prompt: "--  Select Theme --" %>
+  </div>
   <div class="field">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.text_field :category, autofocus: true %>
   </div>
-  <div class="field">
-    <%= f.label :theme_id %><br>
-    <%= f.collection_select :theme_id, Theme.order(:theme), :id, :theme, prompt: "--  Select Theme --" %>
-  </div>
-  <div class="actions">
+    <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>

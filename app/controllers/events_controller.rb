@@ -16,8 +16,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-    @theme = Event.theme.theme
-    @category = Event.category.category
+    @theme = @event.theme
+    @category = @event.category
     if @event.recurrence == 3
       @recurrence = "Weekly event"
     elsif @event.recurrence == 2

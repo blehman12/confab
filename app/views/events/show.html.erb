@@ -51,11 +51,10 @@
 </p>
 
 <p>
-  <!-- <strong>About:</strong><br> -->
-  <% if @theme? %>
-    <b><%= @theme %></b>
+  <% if @event.theme_id.any? %>
+    <b><%= @event.theme.theme %></b>
   <% end %>
-  <% if @event.category.category? %>
+  <% if @event.category_id.any? %>
     | <%= @event.category.category %>
   <% end %>
   <% if @event.subcategoryA? %>

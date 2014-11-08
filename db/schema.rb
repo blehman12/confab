@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107195147) do
+ActiveRecord::Schema.define(version: 20141107231751) do
 
   create_table "attendances", force: true do |t|
     t.integer  "attendee_id"
@@ -51,8 +51,6 @@ ActiveRecord::Schema.define(version: 20141107195147) do
     t.string   "user"
     t.integer  "user_id"
     t.string   "contact"
-    t.string   "theme"
-    t.string   "category"
     t.string   "subcategoryA"
     t.string   "subcategoryB"
     t.string   "subcategoryC"

@@ -1,12 +1,19 @@
-<p>
-  <strong>Category:</strong>
-  <%= @category.category %>
-</p>
+<% provide(:title, @category.category) %>
+
+<h2><%= @category.category %></h2>
 
 <p>
   <strong>Theme:</strong>
   <%= @category.theme.theme %>
 </p>
+
+<p>
+  <strong>Related Events:</strong>
+  <ul>
+    <% @category.events.each do |event| %>
+      <li><span class="event_index"><%= event.name %><span class="event_index"><%= event.start %></span><span class="event_index"><%= event.location %></span><span><%= link_to 'Show', category %></span></li>
+    <% end %>
+  </ul>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

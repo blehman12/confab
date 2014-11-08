@@ -24,10 +24,10 @@ ShowContent(d);
 }</script>
 
 <div class="box">
-  <h1>
+  <h2>
     <%= gravatar_for @user %>
     <%= @user.name %>
-  </h1>
+  </h2>
 </div>
 
 <% if (@user == current_user) || current_user.try(:admin?) %>

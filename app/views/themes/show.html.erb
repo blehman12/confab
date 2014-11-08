@@ -1,9 +1,18 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @theme.theme) %>
+
+<h2><%= @theme.theme %></h2>
 
 <p>
-  <strong>Theme:</strong>
-  <%= @theme.theme %>
+  <strong>Related Categories:</strong>
+  <ul>
+    <% @theme.categories.each do |category| %>
+      <li><%= category.category %><span><%= link_to 'Show', category %></span>
+        <span><%= link_to 'Edit', edit_category_path(category) %></span>
+        <span><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></span></li>
+    <% end %>
+  </ul>
 </p>
+
 
 <%= link_to 'Edit', edit_theme_path(@theme) %> |
 <%= link_to 'Back', themes_path %>
