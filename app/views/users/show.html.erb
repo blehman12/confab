@@ -37,7 +37,7 @@
 
   <% if @user.posts.any? %>
     <h3>Posts (<%= @user.posts.count %>)</h3>
-    <ul class="posts">
+    <ul class="users">
       <%= render @posts %>
     </ul>
     <%= will_paginate @posts %>
