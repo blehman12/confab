@@ -13,18 +13,23 @@
 <br>
 <div>
   <% if @events %>
-      <h5 style="display:inline">Sort By:</h5>
-      <tr>
-        <th><%= sortable "name", "Name" %></th> |
-        <th><%= sortable "start", "Start Date" %></th> |
-        <th><%= sortable "theme", "Theme" %></th> |
-        <th><%= sortable "category", "Category" %></th> |
+    <table>
+      
+      <!-- <h5 style="display:inline">Sort By:</h5> -->
+      <tr style="font-size:1.2em">
+        <th><%= sortable "name", "Name" %></th>
+        <th><%= sortable "start", "Start Date" %></th>
+        <th><%= sortable "location", "Location" %></th>
+        <th><%= sortable "event.theme", "Theme" %></th>
+        <th><%= sortable "event.category", "Category" %></th>
         <th><%= sortable "tags", "Tags" %></th>
       </tr>
-    <ul class="users">
+    <!-- <ul class="users"> -->
       <%= render @events %>
-    </ul>
+    <!-- </ul> -->
+  </table>
     <span class="pagination"><%= will_paginate @events, container: false %></span>
+
   <% else %>
     <h5>No specialties found.</h5>
   <% end %>
@@ -34,7 +39,7 @@
 <div class="table-responsive" style="display:none">
 <table class="table-striped">
   <thead>
-    <tr>
+    <tr class="table-header">
       <th>Name</th>
       <th>Date</th>
       <th>Location</th>
@@ -52,8 +57,8 @@
         <td><%= link_to event.name, event %></td>
         <td><%= event.start %></td>
         <td><%= event.location %></td>
-        <td><%= event.theme %></td>
-        <td><%= event.category %></td>
+        <td><%= event.theme.theme %></td>
+        <td><%= event.category.category %></td>
         <td><%= event.subcategoryA %> -
           <%= event.subcategoryB %> -
           <%= event.subcategoryC %>

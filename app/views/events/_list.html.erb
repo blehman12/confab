@@ -17,8 +17,8 @@
       <tr>
         <td><%= link_to(event.name, event_path(event)) %></td>
         <td><%= event.start %></td>
-        <td><%= event.theme %></td>
-        <td><%= event.category %></td>
+        <td><%= event.theme.theme %></td>
+        <td><%= event.category.category %></td>
         <td><%= event.tags %></td>
       </tr>
     <% end %>

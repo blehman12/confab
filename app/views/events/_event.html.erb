@@ -1,13 +1,13 @@
-<li class="users">
-  <span class="event"><%= link_to "#{event.name[0].upcase}#{event.name[1..-1]}", event %></span>
-  <span class="event_index"><%= event.start %></span>
-  <span class="event_index"><%= event.location %></span>
-  <span class="event_index"><%= @theme unless @theme.blank? %></span>
-  <span class="event_index"><%= @category unless @category.blank? %></span>
-  <span class="event_index"><%= event.tags unless event.tags.blank? %></span>
+<tr class="users">
+  <td class="event"><strong><%= link_to "#{event.name[0].upcase}#{event.name[1..-1]}", event %></strong></td>
+  <td class="event_index"><%= event.start %></td>
+  <td class="event_index"><%= event.location %></td>
+  <td class="event_index"><%= event.theme.theme %></td>
+  <td class="event_index"><%= event.category.category %></td>
+  <td class="event_index"><%= event.tags unless event.tags.blank? %></td>
   <% if current_user.admin? || current_user?(event.user) %>
-    <span><small><%= link_to "edit", edit_event_path(event) %> |
+    <td><small><%= link_to "edit", edit_event_path(event) %> |
     <%= link_to "delete", event, method: :delete,
-                            data: { confirm: "You sure?" } %></small></span>
+                            data: { confirm: "You sure?" } %></small></td>
   <% end %>
-</li>
+</tr>
