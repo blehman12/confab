@@ -1,6 +1,14 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.menu {
+  float: left;
+  margin: 3px;
+  text-align: left;
+  clear: both;
+}
+
 .communications {
   list-style: none;
   margin: 10px 0 0 0;

@@ -66,6 +66,7 @@
     </div>
 
     <div class="field">
+      <%= f.label :theme, "Please select primary and secondary categories for this event:" %><br>
         <%= f.collection_select :theme_id, Theme.order(:theme), :id, :theme, prompt: "--  Select Theme --" %>
       </div>
       <div class="field">

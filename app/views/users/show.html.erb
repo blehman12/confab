@@ -1,27 +1,4 @@
 <% provide(:title, @user.name) %>
-<script type="text/javascript">
-function HideContent(d) {
-document.getElementById(d).style.display = "none";
-}
-function ShowContent(d) {
-document.getElementById(d).style.display = "block";
-}
-function ReverseDisplay(d) {
-if(document.getElementById(d).style.display == "none") { document.getElementById(d).style.display = "block"; }
-else { document.getElementById(d).style.display = "none"; }
-}
-function HideAllShowOne(d) {
-var IDvaluesOfEachDiv = "userwants userskills usercomm userevents";
-
-//-------------------------------------------------------------
-IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/[,\s"']/g," ");
-IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/^\s*/,"");
-IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/\s*$/,"");
-IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/  +/g," ");
-var IDlist = IDvaluesOfEachDiv.split(" ");
-for(var i=0; i<IDlist.length; i++) { HideContent(IDlist[i]); }
-ShowContent(d);
-}</script>
 
 <div class="box">
   <h2>
@@ -47,17 +24,27 @@ ShowContent(d);
   <%= render 'shared/user_attendance_stats' %>
 </section>
 
-<div class="col-md-8">
+<div style="clear:both">
+  <% if @user == current_user %>
+    <div class="row">
+      <aside class="col-md-4">
+        <section class="post_form">
+          <%= render 'shared/post_form' %>
+        </section>
+      </aside>
+    </div>
+  <% end %>
+
   <% if @user.posts.any? %>
     <h3>Posts (<%= @user.posts.count %>)</h3>
-    <ol class="posts">
+    <ul class="posts">
       <%= render @posts %>
-    </ol>
+    </ul>
     <%= will_paginate @posts %>
   <% end %>
 </div>
 
-<div>
+<div class="menu">
   <a href="javascript:HideAllShowOne('userevents')"><%= "#{@name_possessive}" %> Events</a> |
   <a href="javascript:HideAllShowOne('userwants')"><%= "#{@name_possessive}" %> Interests</a> |
   <a href="javascript:HideAllShowOne('userskills')"><%= "#{@name_possessive}" %> Specialties</a> |
@@ -68,9 +55,9 @@ ShowContent(d);
     <h3><%= "#{@name_possessive} Events" %> (<%= @user.events.count %>)</h3>
     <div>
       <% if @user.events.any? %>
-        <ol>
+        <ul>
           <%= render @events %>
-        </ol>
+        </ul>
         <span class="pagination"><%= will_paginate @events, container: false %></span>
       <% else %>
         <p><%= @name_none_posted %> not posted events.</p>
@@ -84,9 +71,9 @@ ShowContent(d);
     <h3><%= "#{@name_possessive} Interests" %> (<%= @user.wants.count %>)</h3>
     <div>
       <% if @user.wants.any? %>
-        <ol>
+        <ul>
           <%= render @wants %>
-        </ol>
+        </ul>
         <span class="pagination"><%= will_paginate @wants, container: false %></span>
       <% else %>
         <p><%= @name_none_posted %> not posted any topics of interest.</p>
@@ -103,9 +90,9 @@ ShowContent(d);
     <h3><%= "#{@name_possessive} Specialties" %> (<%= @user.skills.count %>)</h3>
     <div>
       <% if @user.skills.any? %>
-        <ol>
+        <ul>
           <%= render @skills %>
-        </ol>
+        </ul>
         <span class="pagination"><%= will_paginate @skills, container: false %></span>
       <% else %>
         <p><%= @name_none_posted %> not posted any specialties.</p>
@@ -122,9 +109,9 @@ ShowContent(d);
     <h3>Preferred Methods of Communication (<%= @user.communications.count %>)</h3>
     <div>
       <% if @user.communications.any? %>
-        <ol class="communications">
+        <ul class="communications">
           <%= render @communications %>
-        </ol>
+        </ul>
         <span class="pagination"><%= will_paginate @communications, container: false %></span>
       <% else %>
           <p><%= @name_none_posted %> not posted any preferred methods of communication.</p>
