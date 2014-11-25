@@ -1,4 +1,5 @@
 module SessionsHelper
+  # module to create sessions for users to sign in/out
   def sign_in(user)
     remember_token = User.new_remember_token
     cookies.permanent[:remember_token] = remember_token

@@ -2,6 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+
+# hides category dropdown on new event form until a theme has been selected
 jQuery ->
   $('#event_category_id').parent().hide()
   categories = $('#event_category_id').html()

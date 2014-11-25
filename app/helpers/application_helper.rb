@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   # Returns the full title on a per-page basis.
   def full_title(page_title)
     base_title = "Confab8 Demo App"
@@ -9,7 +8,7 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
-
+# allows tables to be sortable by column headings
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil

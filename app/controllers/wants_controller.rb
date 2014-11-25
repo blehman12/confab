@@ -14,6 +14,8 @@ class WantsController < ApplicationController
 
   def create
     @want = current_user.wants.build(want_params)
+    @themes = Theme.all
+    @categories = Category.all
     if @want.save
       flash[:success] = "Profile Updated!"
       redirect_to user_path(current_user.id)

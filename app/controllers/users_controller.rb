@@ -14,16 +14,20 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # dependent models that the user has entered
     @communications = @user.communications.paginate(page: params[:page], per_page: 10)
     @communication = current_user.communications.build if signed_in?
     @wants = @user.wants.paginate(page: params[:page], per_page: 10)
     @want = current_user.wants.build if signed_in?
     @skills = @user.skills.paginate(page: params[:page], per_page: 10)
     @skill = current_user.skills.build if signed_in?
+    # events the user is attending (including owned events)
     @events = @user.attended_events.paginate(page: params[:page], per_page: 10)
     @event = current_user.attended_events.build if signed_in?
+    # user posts, can currently only post on own wall
     @post = @user.posts.build
     @posts = @user.posts.paginate(page: params[:page])
+    # variables to have headers/other text with names render correctly
     if @user == current_user
       @name_for_wants = "You Are"
       @name_none_posted = "You have"
@@ -70,6 +74,7 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+# partials that show the user's followers and who they are folllowing
   def following
     @title = "Following"
     @user = User.find(params[:id])
@@ -84,6 +89,7 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+# partials that list how many events the user is attending/owns
   def attendeds
     @user = User.find(params[:id])
     @name = "#{@user.name[0].upcase}#{@user.name[1..-1]}"

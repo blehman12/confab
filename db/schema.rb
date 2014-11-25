@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108171035) do
+ActiveRecord::Schema.define(version: 20141125163606) do
 
   create_table "attendances", force: true do |t|
     t.integer  "attendee_id"
@@ -160,6 +160,8 @@ ActiveRecord::Schema.define(version: 20141108171035) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "theme"
+    t.integer  "theme_id"
+    t.integer  "category_id"
   end
 
   add_index "skills", ["user_id", "created_at"], name: "index_skills_on_user_id_and_created_at"
@@ -192,6 +194,8 @@ ActiveRecord::Schema.define(version: 20141108171035) do
     t.datetime "updated_at"
     t.integer  "priority"
     t.string   "theme"
+    t.integer  "theme_id"
+    t.integer  "category_id"
   end
 
   add_index "wants", ["user_id", "created_at"], name: "index_wants_on_user_id_and_created_at"

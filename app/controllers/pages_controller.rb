@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    # show's some of signed-in user's stats
     if signed_in?
       @want = current_user.wants.build
       @wantlist_items = current_user.wantlist.paginate(page: params[:page], per_page: 10)

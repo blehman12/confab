@@ -7,50 +7,10 @@
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
+
 <body>
-  <script type="text/javascript">
-  function HideContent(d) {
-  document.getElementById(d).style.display = "none";
-  }
-  function ShowContent(d) {
-  document.getElementById(d).style.display = "block";
-  }
-  function ReverseDisplay(d) {
-  if(document.getElementById(d).style.display == "none") { document.getElementById(d).style.display = "block"; }
-  else { document.getElementById(d).style.display = "none"; }
-  }
-  function HideAllShowOne(d) {
-  var IDvaluesOfEachDiv = "usersearch wantsearch skillsearch";
-
-  //-------------------------------------------------------------
-  IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/[,\s"']/g," ");
-  IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/^\s*/,"");
-  IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/\s*$/,"");
-  IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/  +/g," ");
-  var IDlist = IDvaluesOfEachDiv.split(" ");
-  for(var i=0; i<IDlist.length; i++) { HideContent(IDlist[i]); }
-  ShowContent(d);
-  }</script>
-
 <div id="container">
   <div class="header">
-    <div id="search" class="navbar-inner" style="display:none">
-      <div>
-        <h4 style="display:inline">Search:</h4>
-        <a href="javascript:HideAllShowOne('usersearch')">Users</a> |
-        <a href="javascript:HideAllShowOne('wantsearch')">User Interests</a> |
-        <a href="javascript:HideAllShowOne('skillsearch')">User Specialties</a>
-      </div>
-      <div id="usersearch" style="display:none">
-        <%= render 'users/search' %>
-      </div>
-      <div id="wantsearch" style="display:none">
-        <%= render 'wants/search' %>
-      </div>
-      <div id="skillsearch" style="display:none">
-        <%= render 'skills/search' %>
-      </div>
-    </div>
     <div class="nav">
       <%= render 'layouts/header' %>
     </div>
@@ -58,31 +18,34 @@
       <h1><%= link_to "Confab", root_path %></h1>
     </div>
   </div>
+
   <span class="page-nav">
-    <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Other Users", users_path %> | <%= link_to "Browse Other Users' Interests", wants_path %> | <%= link_to "Browse Other Users' Specialties", skills_path %></h4>
+    <h4><%= link_to "Find Events", events_path %> | <%= link_to "Find Users", users_path %> | <%= link_to "Browse Users' Interests", wants_path %> | <%= link_to "Browse Users' Specialties", skills_path %></h4>
   </span>
+
   <div class="content">
     <% flash.each do |key, value| %>
       <div class="notice alert-<%= key %>"><%= value %></div>
     <% end %>
 
-
     <div>
       <%= yield %>
     </div>
   </div>
-    <footer>
-      <%= link_to "Home", root_path %> | 
-      <%= link_to "Help", help_path %>
-      <% if signed_in? %>
-        <% if current_user.admin? %>
-          | <%= link_to "Manage Themes", themes_path %>
-          | <%= link_to "Manage Categories", categories_path %>
-        <% end %>
+
+  <footer>
+    <%= link_to "Home", root_path %> | 
+    <%= link_to "Help", help_path %>
+    <% if signed_in? %>
+      <% if current_user.admin? %>
+        | <%= link_to "Manage Themes", themes_path %>
+        | <%= link_to "Manage Categories", categories_path %>
       <% end %>
-    </footer>
+    <% end %>
+  </footer>
+  
+  <!-- debugger to check page statuses in development, hidden in production -->
   <%= debug(params) if Rails.env.development? %>
 </div>
-
 </body>
 </html>

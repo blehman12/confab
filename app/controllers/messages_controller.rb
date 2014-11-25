@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+# !!!!not fully implemented, based on tutorial for mailboxes, refers to incorrect variables in some plaes!!!
   before_filter :authenticate_user!
   before_filter :get_mailbox, :get_box, :get_actor
   def index

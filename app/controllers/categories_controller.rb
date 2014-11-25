@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column,    :sort_direction
 
   # GET /categories
   # GET /categories.json
@@ -72,8 +73,16 @@ class CategoriesController < ApplicationController
       @category = Category.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:category, :theme_id)
+    end
+
+    # sorting methods for index
+    def sort_column
+      Category.column_names.include?(params[:sort]) ? params[:sort] : "category"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

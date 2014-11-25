@@ -2,9 +2,10 @@
 
 <h2><%= @theme.theme %></h2>
 
+<!-- links to each category that is listed under this theme and allows editing/destroying -->
 <p>
   <strong>Related Categories:</strong>
-  <ul>
+  <ul> 
     <% @theme.categories.each do |category| %>
       <li><%= category.category %><span><%= link_to 'Show', category %></span>
         <span><%= link_to 'Edit', edit_category_path(category) %></span>

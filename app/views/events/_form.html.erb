@@ -67,11 +67,11 @@
 
     <div class="field">
       <%= f.label :theme, "Please select primary and secondary categories for this event:" %><br>
-        <%= f.collection_select :theme_id, Theme.order(:theme), :id, :theme, prompt: "--  Select Theme --" %>
-      </div>
-      <div class="field">
-        <%= f.grouped_collection_select :category_id, Theme.order(:theme), :categories, :theme, :id, :category, prompt: "-- Select Category --"  %>
-      </div>
+      <%= f.collection_select :theme_id, Theme.order(:theme), :id, :theme, prompt: "--  Select Theme --" %>
+    </div>
+    <div class="field">
+      <%= f.grouped_collection_select :category_id, Theme.order(:theme), :categories, :theme, :id, :category, prompt: "-- Select Category --"  %>
+    </div>
 
 
 

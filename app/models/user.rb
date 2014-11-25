@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   has_many :posts, dependent: :destroy
+  # email validation to ensure unique email addresses that are correctly formatted
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
@@ -18,6 +19,7 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  # validates password entered and points to password digest
   has_secure_password
   validates :password, length: { minimum: 6 }
 
@@ -26,26 +28,26 @@ class User < ActiveRecord::Base
     SecureRandom.urlsafe_base64
   end
 
+# encrypts password so that it is not stored as plain text in database
   def User.digest(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
 
+# lists of users' info
   def commlist
-    # This is preliminary. See "Following users" for the full implementation.
     Communication.from_users_followed_by(self)
   end
 
   def wantlist
-    # This is preliminary. See "Following users" for the full implementation.
     Want.from_users_followed_by(self)
   end
 
   def skilllist
-    # This is preliminary. See "Following users" for the full implementation.
     Skill.from_users_followed_by(self)
   end
 
+# methods to show followers/followed users, follow, and unfollow
   def following?(other_user)
     relationships.find_by(followed_id: other_user.id)
   end
@@ -58,7 +60,7 @@ class User < ActiveRecord::Base
     relationships.find_by(followed_id: other_user.id).destroy
   end
 
-
+# methods to show events attended, attend an event, and unattend an event
   def attending?(event)
     attendances.find_by(attended_id: event.id)
   end

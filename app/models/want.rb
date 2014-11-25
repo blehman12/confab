@@ -1,11 +1,11 @@
 class Want < ActiveRecord::Base
   belongs_to :user
+  belongs_to :theme
+  belongs_to :category
   validates :user_id, presence: true
   validates :wanted, presence: true, length: { maximum: 140 }
 
   PRIORITY = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-  THEME = ["Transportation","Comics","Entertainment and Media","Writing/Books","Business","Hobbies","Arts and Crafts","Technology and Science","Gaming","Other"]
 
   def self.from_users_followed_by(user)
     followed_user_ids = "SELECT followed_id FROM relationships

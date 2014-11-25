@@ -7,11 +7,12 @@
   <%= @category.theme.theme %>
 </p>
 
+<!-- shows and links to the events under this category -->
 <p>
   <strong>Related Events:</strong>
   <ul>
     <% @category.events.each do |event| %>
-      <li><span class="event_index"><%= event.name %><span class="event_index"><%= event.start %></span><span class="event_index"><%= event.location %></span><span><%= link_to 'Show', category %></span></li>
+      <li><span class="event_index"><%= event.name %><span class="event_index"><%= event.start %></span><span class="event_index"><%= event.location %></span><span><%= link_to 'View', event_path(event) %></span></li>
     <% end %>
   </ul>
 

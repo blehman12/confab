@@ -1,3 +1,4 @@
+# !!!!Not fully implemented, based on mailboxer gem tutorial!!! 
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :get_mailbox, :get_box, :get_actor

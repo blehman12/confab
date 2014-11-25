@@ -14,6 +14,8 @@ class SkillsController < ApplicationController
 
   def create
     @skill = current_user.skills.build(skill_params)
+    @themes = Theme.all
+    @categories = Category.all
     if @skill.save
       flash[:success] = "Specialty Added!"
       redirect_to user_path(current_user.id)

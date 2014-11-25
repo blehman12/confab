@@ -7,6 +7,7 @@
   </h2>
 </div>
 
+<!-- only displays user's email to the user whose profile it is and admins -->
 <% if (@user == current_user) || current_user.try(:admin?) %>
   <div class="box">
     <%= @user.email %>
@@ -14,6 +15,8 @@
   <%= link_to "delete account", :user, method: :delete,
                                   data: { confirm: "You sure?" } %>
 <% end %>
+
+<!-- partials to show how brief stats for follower/following and event attendance -->
 <section class="attendance">
   <%= render 'shared/stats' %>
 </section>
@@ -24,6 +27,7 @@
   <%= render 'shared/user_attendance_stats' %>
 </section>
 
+<!-- form for user to post messages to their own profile -->
 <div style="clear:both">
   <% if @user == current_user %>
     <div class="row">
@@ -35,6 +39,7 @@
     </div>
   <% end %>
 
+<!-- user's posts -->
   <% if @user.posts.any? %>
     <h3>Posts (<%= @user.posts.count %>)</h3>
     <ul class="users">
@@ -44,6 +49,8 @@
   <% end %>
 </div>
 
+
+<!-- menu to show the user's events, interests, specialties, and shared methods of communication, toggles so only one is visible at a time -->
 <div class="menu">
   <a href="javascript:HideAllShowOne('userevents')"><%= "#{@name_possessive}" %> Events</a> |
   <a href="javascript:HideAllShowOne('userwants')"><%= "#{@name_possessive}" %> Interests</a> |
@@ -124,3 +131,27 @@
     <% end %>
   </div>
 </div>
+
+<script type="text/javascript">
+function HideContent(d) {
+document.getElementById(d).style.display = "none";
+}
+function ShowContent(d) {
+document.getElementById(d).style.display = "block";
+}
+function ReverseDisplay(d) {
+if(document.getElementById(d).style.display == "none") { document.getElementById(d).style.display = "block"; }
+else { document.getElementById(d).style.display = "none"; }
+}
+function HideAllShowOne(d) {
+var IDvaluesOfEachDiv = "userwants userskills usercomm userevents";
+
+//-------------------------------------------------------------
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/[,\s"']/g," ");
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/^\s*/,"");
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/\s*$/,"");
+IDvaluesOfEachDiv = IDvaluesOfEachDiv.replace(/  +/g," ");
+var IDlist = IDvaluesOfEachDiv.split(" ");
+for(var i=0; i<IDlist.length; i++) { HideContent(IDlist[i]); }
+ShowContent(d); }
+</script>

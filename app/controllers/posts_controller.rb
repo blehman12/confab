@@ -12,6 +12,15 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.destroy
+    @item.image.destroy # remove image from s3
+    @item.image.clear # queues attachment to be deleted
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
+      format.json { head :no_content }
+    end
+    flash[:success] = "Post deleted."
+    redirect_to user_path(current_user)
   end
 
   private

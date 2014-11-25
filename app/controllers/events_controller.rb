@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user,     only: :destroy #admin can remove but not update events
   helper_method :sort_column,    :sort_direction
   before_action :set_event,      only: [:show, :edit, :update, :destroy]
 
@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.search(params[:search]).paginate(page: params[:page], per_page: 25).order(sort_column + " " + sort_direction)
+    # allows partials to adjust if necessary to render slightly differently if the index or a user's list of events
     @index = true
   end
 
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @theme = @event.theme
     @category = @event.category
+    # event recurrence is limited to one of these 4 options, which are saved in the table as numbers, this translates the options as the appropriate text
     if @event.recurrence == 3
       @recurrence = "Weekly event"
     elsif @event.recurrence == 2
@@ -27,6 +29,7 @@ class EventsController < ApplicationController
     else 
       @recurrence = "One time event"
     end
+    # to show a range of dates if event is more than one day, else just show single day
     if @event.stop == @event.start
       @date_range = @event.start.strftime("%B %d, %Y")
     else
@@ -81,7 +84,7 @@ class EventsController < ApplicationController
     end
   end
 
-  # image/paperclip code borrowed from Kate & Jin
+  # image/paperclip code
     def upload
       uploaded_io = params[:items][:image]
       File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
@@ -103,6 +106,7 @@ class EventsController < ApplicationController
     redirect_to events_url
   end
 
+# shows users attending event
   def attendees
     @title = "Attendees"
     @event = Event.find(params[:id])
@@ -111,12 +115,10 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:name, :start, :stop, :location, :address, :recurrence, :user, :user_id, :contact, :theme_id, :category_id, :subcategoryA, :subcategoryB, :subcategoryC, :address2, :city, :state, :zipcode, :description, :tags, :image)
     end
